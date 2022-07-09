@@ -144,7 +144,7 @@ const submit = async () => {
     >
       <BaseProgress :model-value="progress" />
       <div class="action">
-        <BaseButton v-show="step !== 0" color="#FFF307" @click="previous">&lt;&lt; Previous</BaseButton>
+        <BaseButton v-show="step !== 0" color="gray" @click="previous">&lt;&lt; Previous</BaseButton>
         <BaseButton v-show="(step + 1) < questions.length" color="#94E73A" style="text-align: end" @click="next">Next >></BaseButton>
         <BaseButton v-show="(step + 1) >= questions.length" color="#94E73A" style="text-align: end" @click="submit">Submit</BaseButton>
       </div>
