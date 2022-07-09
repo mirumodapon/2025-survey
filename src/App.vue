@@ -34,7 +34,7 @@ const loading = ref('')
 const token = ref(window.localStorage.getItem('ccip_token') ?? '')
 
 const sitekey = import.meta.env.VITE_HCAPTCHA_SITE_KEY
-const verifyCaptcha = ({ token }: { token: string, eKey: string }) => {
+const verifyCaptcha = (token: string) => {
   data.value.captchaToken = token
 }
 const histories = ref<number[]>([])
