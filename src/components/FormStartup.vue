@@ -15,10 +15,10 @@ const lang = computed({
   <section class="base">
     <h1>
       <template v-if="lang === 'zh'">
-        COSCUP & KCD 2022 參與者大調查
+        COSCUP x KCD Taiwan 2022 參與者大調查
       </template>
       <template v-else>
-        COSCUP & KCD 2022 Survey
+        COSCUP x KCD Taiwan 2022 Survey
       </template>
     </h1>
     <ul class="description">

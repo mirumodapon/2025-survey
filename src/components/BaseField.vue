@@ -72,7 +72,7 @@ const _value = computed({
         if (newVal.length > (props.config.maxChosen ?? Number.MAX_SAFE_INTEGER)) {
           newVal.splice(0, 1)
         }
-        newVal = newVal.map((el) => el === otherSymbol ? other.value : el)
+        newVal = (other.value) ? newVal.map((el) => el === otherSymbol ? other.value : el) : newVal.filter((el) => el !== otherSymbol)
       }
       emit('update:modelValue', newVal)
       return
