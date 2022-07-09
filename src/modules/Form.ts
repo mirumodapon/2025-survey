@@ -235,19 +235,19 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         type: 'Field',
         key: 'job_salary',
         required: true,
-        question: t('你目前的總年薪是多少（扣税前的薪資、獎金和年終）？如果你是按照小時計酬，請估算大約的年薪。', 'What is your current total compensation (salary, bonuses, and perks, before taxes and deductions)? If you are paid hourly, please estimate an equivalent yearly salary.'),
+        question: t('你目前的總年薪是多少（扣税前的薪資、獎金和年終）？如果你是按照小時計酬，請估算大約的年薪。(以臺幣為單位)', 'What is your current total compensation in TWD (salary, bonuses, and perks, before taxes and deductions)? If you are paid hourly, please estimate an equivalent yearly salary.'),
         config: {
           type: 'single-option',
           options:  makeOptions([
-            ['0 - 36萬', '0 - 360,000'],
-            ['36萬 - 60萬', '360,000 - 600,000'],
-            ['60萬 - 84萬', '600,000 - 840,000'],
-            ['84萬 - 108萬', '840,000 - 1,080,000'],
-            ['108萬 - 132萬', '1,080,000 - 1,320,000'],
-            ['132萬 - 156萬', '1,320,000 - 1,560,000'],
-            ['156萬 - 180萬', '1,560,000 - 1,800,000'],
-            ['180萬 - 204萬', '1,800,000 - 2,040,000'],
-            ['204萬以上', '2,040,000 or more'],
+            ['0 - 36萬', '0 - 360,000 TWD'],
+            ['36萬 - 60萬', '360,000 - 600,000 TWD'],
+            ['60萬 - 84萬', '600,000 - 840,000 TWD'],
+            ['84萬 - 108萬', '840,000 - 1,080,000 TWD'],
+            ['108萬 - 132萬', '1,080,000 - 1,320,000 TWD'],
+            ['132萬 - 156萬', '1,320,000 - 1,560,000 TWD'],
+            ['156萬 - 180萬', '1,560,000 - 1,800,000 TWD'],
+            ['180萬 - 204萬', '1,800,000 - 2,040,000 TWD'],
+            ['204萬以上', '2,040,000 TWD or more'],
             ['不方便告知', 'Prefer not to say']
           ])
         }
