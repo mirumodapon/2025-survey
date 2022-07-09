@@ -41,6 +41,7 @@ const lang = computed({
 }
 h1 {
   font-size: 1.4rem;
+  word-break: keep-all;
 }
 .description {
   font-size: 1.2rem;
