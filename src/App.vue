@@ -64,6 +64,14 @@ const previous = () => {
 }
 
 const submit = async () => {
+  const guards = [requiredGuard(lang.value), ...(current.value.filter((c) => c.type === 'Guard') as Array<{ type: 'Guard', to: FormGuard }>).map((c) => c.to)]
+  for (const guard of guards) {
+    const result = guard(data.value, step.value, questions.value)
+    if (typeof result === 'boolean' && !result) {
+      return
+    }
+  }
+
   if (loading.value) return
   loading.value = t('送出表單中 ...', 'Send form ...')
   const res = await fetch(import.meta.env.VITE_BACKEND_URL, { method: 'POST', body: JSON.stringify(data.value) })
