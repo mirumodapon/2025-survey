@@ -1,4 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.component('VueHcaptcha', VueHcaptcha)
+app.mount('#app')

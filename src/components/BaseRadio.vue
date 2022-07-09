@@ -42,7 +42,7 @@ const active = computed(() => props.value === _value.value)
 
   &.active {
     background: var(--primary-color);
-    color: #fff;
+    color: var(--text-color);
   }
 }
 </style>

@@ -1,16 +1,18 @@
 <script lang="ts" setup>
-const props = defineProps({ modelValue: Number })
+const props = defineProps({ modelValue: { type: Number, required: true } })
 </script>
 
 <template>
   <div class="base">
     <div class="text">Finished: {{ modelValue }}%</div>
-    <div class="bar"><div class="iterator" :style="{ right: `${modelValue}%` }" /></div>
+    <div class="bar"><div class="iterator" :style="{ right: `${100 - modelValue}%` }" /></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .base {
+  padding: 10px;
+
   .text {
     font-size: 1rem;
     text-align: end;

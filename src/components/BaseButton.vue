@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const props = defineProps({ modelValue: Boolean })
+const props = defineProps({ modelValue: Boolean, color: String })
 </script>
 
 <template>
@@ -15,10 +15,10 @@ const props = defineProps({ modelValue: Boolean })
 
 <style lang="scss" scoped>
 .base {
-  border: 1px solid var(--primary-color);
+  border: 1px solid v-bind(color);
   text-align: start;
   background: none;
-  color: var(--primary-color);
+  color: v-bind(color);
   padding: 6px;
   font-size: 1.2rem;
   overflow: hidden;
@@ -28,8 +28,8 @@ const props = defineProps({ modelValue: Boolean })
 
   &:hover,
   &:active {
-    color: #fff;
-    background: var(--primary-color);
+    color: var(--text-color);
+    background: v-bind(color);
   }
 }
 </style>

@@ -11,15 +11,17 @@ const _value = computed({
 
 <template>
   <div class="base">
-    <textarea v-model="_value" :maxlength="max" /><span>{{ `${_value?.length}/${max}` }}</span>
+    <textarea v-model="_value" :maxlength="max" />
+    <span>{{ `${_value?.length}/${max}` }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .base {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: stretch;
 
   textarea {
     border: 1px solid var(--primary-color);
@@ -32,6 +34,7 @@ const _value = computed({
   span {
     margin-left: 2px;
     font-size: 0.8rem;
+    text-align: end;
   }
 }
 </style>

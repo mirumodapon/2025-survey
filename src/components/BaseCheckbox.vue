@@ -49,7 +49,7 @@ const active = computed(() => {
 
   &.active {
     background: var(--primary-color);
-    color: #fff;
+    color: var(--text-color);
   }
 }
 </style>

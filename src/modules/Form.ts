@@ -1,0 +1,577 @@
+import { FormConfig, FormItem, DataType } from '../types'
+import { jumpToCOSCUPGuard, jumpToRole, requiredAgree, requiredGuard, verifyCaptcha } from './Guards'
+
+export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataType, lang: string) => FormConfig = (t, data, lang) => {
+
+  const makeOptions = (options: [zh: string, en: string][]) =>
+    options.map((option) => ({ text: t(option[0], option[1]), value: option[0] }))
+
+  const makeProOptions = (options: string[]) =>
+    options.map((option) => ({ text: option, value: option }))
+
+  const PROGRAMMING_LANGUAGE_OPTIONS = makeProOptions([
+    'APL',
+    'Assembly',
+    'Bash/Shell',
+    'C',
+    'C#',
+    'C++',
+    'Clojure',
+    'COBOL',
+    'Crystal',
+    'Dart',
+    'Delphi',
+    'Elixir',
+    'Erlang',
+    'F#',
+    'Go',
+    'Groovy',
+    'Haskell',
+    'HTML/CSS',
+    'Java',
+    'JavaScript',
+    'Julia',
+    'Kotlin',
+    'LISP',
+    'Matlab',
+    'Markdown',
+    'Node.js',
+    'Objective-C',
+    'Perl',
+    'PHP',
+    'PowerShell',
+    'Python',
+    'R',
+    'Ruby',
+    'Rust',
+    'Scala',
+    'SQL',
+    'Swift',
+    'TypeScript',
+    'VBA',
+    'Other'
+  ])
+
+  return [
+    [{ type: 'FormStartup' }],
+    [
+      { type: 'Field', key: 'nickname', required: true, question: t('暱稱', 'Nickname'), config: { type: 'text', autocomplete: 'nickname' }, inline: true },
+      { type: 'Field', key: 'email', required: !!data['is_subscribe_newsletter'], question: 'Email', config: { type: 'email' }, inline: true },
+      { type: 'Field', key: 'is_subscribe_newsletter', question: '', config: { type: 'agree', question: t('是否願意訂閱電子報？', 'Would you like to subscribe to the COSCUP newsletter?') }, inline: true },
+      { type: 'Explain', text: t('訂閱電子報將收到 COSCUP 未來的相關訊息。', 'Subscribe to the newsletter to receive future information about COSCUP.') },
+      { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 Developer Survey？', 'Would you like to take the Developer Survey?') }, inline: true },
+      { type: 'Guard', to: jumpToCOSCUPGuard('is_take') }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'age',
+        required: true,
+        question: t('你的年齡？', 'What\'s your Age?'),
+        config: {
+          type: 'single-option',
+          options: makeOptions([
+            ['18 歲以下', 'Under 18 years old'],
+            ['19-24 歲', '19-24 years old'],
+            ['25-34 歲', '25-34 years old'],
+            ['35-44 歲', '35-44 years old'],
+            ['45-54 歲', '45-54 years old'],
+            ['55-64 歲', '55-64 years old'],
+            ['65歲以上', '65 years or older'],
+            ['不方便告知', 'Prefer not to say']
+          ])
+        }
+      },
+      {
+        type: 'Field',
+        key: 'gender',
+        required: true,
+        question: t('你的性別？', 'What\'s your gender?'),
+        config: {
+          type: 'single-option',
+          options:  makeOptions([
+            ['男', 'Man'],
+            ['女', 'Woman'],
+            ['不方便告知', 'Prefer not to say'],
+            ['非二元論、變性人或不符合性別要求的人', 'Non-binary, genderqueer, or gender non-conforming']
+          ]),
+          other: { text: t('或專屬你的詞', 'Or, in your own words:') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'education_level',
+        required: true,
+        question: t('你的教育程度？', 'What\'s your education level'),
+        config: {
+          type: 'single-option',
+          options:  makeOptions([
+            ['國小', 'Primary/elementary school'],
+            ['國中', 'Junior high school'],
+            ['高中/高職', 'Senior high school'],
+            ['專科', 'Junior college'],
+            ['學士', 'Bachelor\'s degree'],
+            ['碩士', 'Master\'s degree'],
+            ['博士', 'Doctor\'s degree'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'work_status',
+        required: true,
+        question: t('以下哪項最能形容你？請選擇所有適用的選項。', 'Which of the following describe you, if any? Please check all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['全職員工', 'Employed full-time'],
+            ['全職學生', 'Student, full-time'],
+            ['自營商、SOHO 或 自由工作者',  'Independent contractor, freelancer, or self-employed'],
+            ['目前未就業，但在找工作中', 'Not employed, but looking for work'],
+            ['半職員工', 'Employed part-time'],
+            ['半職學生', 'Student, part-time'],
+            ['目前未就業，但對工作不感興趣', 'Not employed, and not looking for work'],
+            ['不方便告知', 'I prefer not to say'],
+            ['已退休', 'Retired'],
+          ])
+        }
+      },
+      {
+        type: 'Field',
+        key: 'work_job',
+        required: true,
+        question: t('以下哪項最能形容你目前的工作？請選擇所有適用的選項。', 'Which of the following describes your current job? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['工程師/開發者, 前端', 'Developer, Front-end'],
+            ['工程師/開發者, 後端', 'Developer, Back-end'],
+            ['工程師/開發者, 全端', 'Developer, Full-stack'],
+            ['工程師/開發者, 手機', 'Developer, Mobile'],
+            ['工程師/開發者, 桌面或企業應用', 'Developer, Desktop or Enterprise Applications'],
+            ['工程師/開發者, 嵌入式應用程序或設備', 'Developer, Embedded Applications or Devices'],
+            ['工程師/開發者, 遊戲或圖像', 'Developer, Game or Graphics'],
+            ['工程師/開發者, 品質保證或測試', 'Developer, QA or test'],
+            ['開發運維工程師', 'DevOps Engineer'],
+            ['資料工程師', 'Engineer, Data'],
+            ['網站可靠性工程工程師', 'Engineer, Site Reliability'],
+            ['工程師經理', 'Engineering Manager'],
+            ['系統管理員', 'System Administrator'],
+            ['資料庫管理員', 'Database Administrator'],
+            ['資料科學家或機器學習人員', 'Data Scientist or Machine Learning specialist'],
+            ['資料或商業分析人員', 'Data or Business Analyst'],
+            ['設計師', 'Designer'],
+            ['產品經理', 'Product Manager'],
+            ['行銷相關人員', 'Marketing-related Professional'],
+            ['銷售業務人員', 'Business or Sales Professional'],
+            ['金融相關人員', 'Finance-related Professional'],
+            ['高層管理者（首席長、總經理等）', 'Senior Executive (C-Suite, VP, etc.)'],
+            ['人力資源管理人員', 'Human Resources Professional'],
+            ['總務行政人員', 'Administration Staff'],
+            ['學術研究人員', 'Academic Researcher'],
+            ['教育人員', 'Educator'],
+            ['學生', 'Student'],
+            ['目前未就業', 'Not employed']
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'job_time',
+        required: true,
+        question: t('你從事相關工作多久了？', 'How long have you been working in the industry?'),
+        config: {
+          type: 'single-option',
+          options:  makeOptions([
+            ['< 1 年', 'Less than 1 year'],
+            ['1 - 4 年', '1 to 4 years'],
+            ['5 - 9 年', '5 to 9 years'],
+            ['10 - 14 年', '10 to 14 years'],
+            ['15 - 19 年', '15 to 19 years'],
+            ['20 - 24 年', '20 to 24 years'],
+            ['25 to 29 年', '25 to 29 years'],
+            ['>  30 年', 'More than 50 years']
+          ])
+        }
+      },
+      {
+        type: 'Field',
+        key: 'job_industry',
+        required: true,
+        question: t('你在哪個產業工作或是參與最多的產業？請選擇所有適用的選項。', 'Which industry do you work in or are most involved with? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['電子資訊/軟體/半導體相關業 - 軟體及網路相關業', 'Software and network'],
+            ['電子資訊/軟體/半導體相關業 - 電信及通訊相關業', 'Telecommunications and communications'],
+            ['電子資訊/軟體/半導體相關業 - 電腦及消費性電子製造業', 'Computer and Consumer Electronics Manufacturing'],
+            ['電子資訊/軟體/半導體相關業 - 光電及光學相關業', 'Optoelectronics and Optics'],
+            ['電子資訊/軟體/半導體相關業 - 電子零組件相關業', 'Electronic components'],
+            ['電子資訊/軟體/半導體相關業 - 半導體業', 'Semiconductor'],
+            ['一般製造業', 'General Manufacturing'],
+            ['一般服務業', 'General Service'],
+            ['文教相關業', 'Culture and Education'],
+            ['政府公共行政', 'Government and public services'],
+            ['大眾傳播相關業', 'Media and Communication'],
+            ['批發/零售業', 'Wholesale / Retail'],
+            ['金融投顧及保險業', 'Financial Investment and Insurance'],
+            ['運輸物流及倉儲業', 'Transportation logistics and warehousing'],
+            ['醫療保健及社會福利', 'Healthcare and social welfare'],
+            ['法律/會計/顧問/研發', 'Legal / Accounting / Consulting / R&D'],
+            ['藝術/旅遊/娛樂休閒/運動業', 'Art / Travel / Entertainment & Leisure / Sports'],
+            ['住宿/餐飲服務業', 'Accommodation / Food Service'],
+            ['政治及宗教', 'Politics and Religion'],
+            ['建築營造及不動產相關業', 'Construction and real estate'],
+            ['農林漁牧水電資源業', 'Agriculture, Forestry, Fisheries, Livestock, Water, and Electronic Resources'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'job_salary',
+        required: true,
+        question: t('你目前的總年薪是多少（扣税前的薪資、獎金和年終）？如果你是按照小時計酬，請估算大約的年薪。', 'What is your current total compensation (salary, bonuses, and perks, before taxes and deductions)? If you are paid hourly, please estimate an equivalent yearly salary.'),
+        config: {
+          type: 'single-option',
+          options:  makeOptions([
+            ['0 - 36萬', '0 - 360,000'],
+            ['36萬 - 60萬', '360,000 - 600,000'],
+            ['60萬 - 84萬', '600,000 - 840,000'],
+            ['84萬 - 108萬', '840,000 - 1,080,000'],
+            ['108萬 - 132萬', '1,080,000 - 1,320,000'],
+            ['132萬 - 156萬', '1,320,000 - 1,560,000'],
+            ['156萬 - 180萬', '1,560,000 - 1,800,000'],
+            ['180萬 - 204萬', '1,800,000 - 2,040,000'],
+            ['204萬以上', '2,040,000 or more'],
+            ['不方便告知', 'Prefer not to say']
+          ])
+        }
+      },
+      { type: 'Explain', text: t('我們希望能分享最真實的業界薪資情報，因此邀請 COSCUP 會眾用匿名的方式分享薪資資訊，讓大家了解相似經驗與職位的市場行情，更清楚自己在市場上的價值。', 'We hope to share salary information anonymously through the experiences of COSCUP participants. By sharing the most realistic salary information in the industry, we can help people understand the market situation and better understand their value in the market.') }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'is_hear_open_source',
+        required: true,
+        question: t('是否聽過開放原始碼？', 'Have you ever heard of Open Source'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      { type: 'Guard', to: jumpToCOSCUPGuard('is_hear_open_source') }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'how_know_open_source',
+        required: true,
+        question: t('你是如何認識開放原始碼？', 'How do you know Open Source? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['親友介紹', 'Friends and Family'],
+            ['學校老師/大學教授', 'School Teachers/ University Professors'],
+            ['學校社團', 'School Clubs / Communities'],
+            ['報章雜誌', 'Newspapers and Magazines'],
+            ['電視新聞', 'TV News'],
+            ['網路論壇', 'Online Forums'],
+            ['網路新聞', 'Online News'],
+            ['社群媒體(FB, IG, Twitter, Plurk...)', 'Social Media'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'open_source_role',
+        required: true,
+        question: t('你在開放原始碼的運動中扮演的角色？', 'What is your role in the Open Source movement?'),
+        config: {
+          type: 'single-option',
+          options: makeOptions([
+            ['開發者', 'Coders'],
+            ['使用者', 'Users'],
+            ['推廣者', 'Promoters']
+          ])
+        }
+      },
+      { type: 'Guard', to: jumpToRole }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'know_license',
+        required: true,
+        question: t('聽過與了解哪些常見自由及開放原始碼軟體許可證？', 'What is some Free and Open Source Software license agreements you have heard of and know?'),
+        config: {
+          type: 'multi-option',
+          options:  makeProOptions([
+            'MIT',
+            'ISC',
+            'WTFPL',
+            '(L/A)GPL 2.0',
+            '(L/A)GPL 3.0',
+            'MPL',
+            'Apache 2.0',
+            'BSD',
+            'Creative Commons license',
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_sponsored_open_source',
+        required: true,
+        question: t('是否曾經付費或贊助過任何開源專案或貢獻者？', 'Have you ever paid for or sponsored any open source projects or contributors?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_open_source_no_paid',
+        required: true,
+        question: t('你知道開源不意味者一定要免費嗎？', 'Do you know that open source doesn\'t mean it has to be free?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_rely_open_source',
+        required: true,
+        question: t('你的工作中有使用或依賴開源嗎？', 'Do you use or rely on open source in your work?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      { type: 'Guard', to: jumpToCOSCUPGuard('is_allow_coc') }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'commonly_used_languages',
+        question: t('過去一年中，你最常使用的程式、腳本、標記式語言是什麼？（若無可跳過此題）', 'Which programming, scripting, and markup languages have you done extensive development work in over the past year? (If not, you can skip this question)'),
+        config: {
+          type: 'multi-option',
+          options: PROGRAMMING_LANGUAGE_OPTIONS,
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'favorite_languages',
+        question: t('喜歡的程式語言？', 'Favorite programming languages?'),
+        config: {
+          type: 'multi-option',
+          options: PROGRAMMING_LANGUAGE_OPTIONS,
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'annoying_languages',
+        question: t('討厭的程式語言？', 'Annoying programming languages?'),
+        config: {
+          type: 'multi-option',
+          options: PROGRAMMING_LANGUAGE_OPTIONS,
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_develop_platforms',
+        question: t('最常開發的平臺？', 'For which platforms do you develop?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'Web Backend',
+            'Web Frontend',
+            'Desktop',
+            'Mobile',
+            'Server/infrastructure',
+            'Cloud',
+            'IoT/Embedded',
+            'WebAssembly',
+            'Consoles(Xbox/PlayStation/Nintendo)',
+            'I don\'t develop anything'
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_used_editors',
+        question: t('最常使用的編輯器或 IDE ？', 'Most commonly used editors or IDEs?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'GNU nano',
+            'Vim',
+            'Emacs',
+            'Sublime Text',
+            'Visual Studio Code',
+            'Visual Studio',
+            'XCode',
+            'Eclipse',
+            'JetBrains Family (Intellij, PhpStorm, WebStorm)',
+            'Android Studio',
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_used_os',
+        question: t('平常使用的作業系統？', 'Commonly used operating systems?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'Windows 10',
+            'Windows 11',
+            'Windows 7 or XP',
+            'Ubuntu Linux',
+            'Debian Linux',
+            'Arch Linux',
+            'Fedora Linux',
+            'Redhat Linux',
+            'CentOS (including Stream & Rocky Linux)',
+            'openSUSE Linux',
+            'macOS',
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      { type: 'Guard', to: jumpToCOSCUPGuard('is_allow_coc') }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'why_promote_open_source',
+        required: true,
+        question: t('你為什麼願意推廣開放原始碼的精神？', 'Why are you willing to promote open source? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['我為人人 人人為我', 'One for all, all for one'],
+            ['對職業生涯有幫助', 'For professional growth'],
+            ['被某些開發者感動', 'Moved by, inspired by some developers'],
+            ['朋友強力推坑', 'It was highly recommend by a friend']
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'how_promote_open_source',
+        required: true,
+        question: t('你平常如何推廣開放原始碼的精神？', 'How do you usually promote open source? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['推廣大家使用開源軟體', 'Recommend people to use open source software'],
+            ['與朋友科普何謂開源', 'Introduce friends to open source']
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'what_hope_coscup',
+        required: true,
+        question: t('你希望能在 COSCUP 大會中有什麼收穫？', 'What do you hope to get out of COSCUP? Please select all that apply.'),
+        config: {
+          type: 'multi-option',
+          options:  makeOptions([
+            ['了解開放原始碼', 'Understand open source '],
+            ['認識新朋友', 'Meet new people'],
+            ['獲取新知', 'Gain new knowledge'],
+            ['學習新技術', 'Learn new technologies'],
+            ['與好朋友交流', 'Connect with friends'],
+            ['與其他社群交流', 'Interact with other communities'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'what_swag_in_coscup',
+        question: t('你想獲得的攤位小物？', 'What\'s a swag that you wish to get?'),
+        config: {
+          type: 'multi-text'
+        }
+      },
+      {
+        type: 'Field',
+        key: 'what_from_booth_in_coscup',
+        question: t('你希望在攤位獲得的資訊？', 'What do you want to learn the most from the booth?'),
+        config: {
+          type: 'multi-text'
+        }
+      },
+      { type: 'Field', key: 'is_allow_coc', question: '', required: true, config: { type: 'agree', question: t('我了解並願意遵守 CoC 規範', 'I understand and am willing to abide by the CoC regulations') }, inline: true },
+      { type: 'Coc' },
+      { type: 'Captcha' },
+      { type: 'Guard', to: requiredAgree(lang) },
+      { type: 'Guard', to: verifyCaptcha(lang) }
+    ]
+  ]
+}
+
+export const getDefaultFormData = (config: FormConfig) => {
+  const data: DataType = { captchaToken: '' }
+  const makeData = (item: FormItem) => {
+    if (
+      item.type === 'FormStartup' ||
+      item.type === 'Explain' ||
+      item.type === 'FormEnd' ||
+      item.type === 'Coc' ||
+      item.type === 'Captcha' ||
+      item.type === 'Guard'
+    ) return
+    data[item.key] = (() => {
+      if (item.config.type === 'multi-option') return []
+      if (item.config.type === 'agree') return false
+      return ''
+    })()
+  }
+  config.forEach((el) => {
+    if (Array.isArray(el)) {
+      el.forEach(makeData)
+    } else {
+      makeData(el)
+    }
+  })
+  return data
+}

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-const props = defineProps({ modelValue: String, max: { type: Number, default: 20 } })
+const props = defineProps({ modelValue: String, max: { type: Number, default: 20 }, inputType: { type: String, default: 'text' }, readonly: { type: Boolean, default: false }, autocomplete: String })
 const emit = defineEmits(['update:modelValue'])
 
 const _value = computed({
@@ -11,7 +11,7 @@ const _value = computed({
 
 <template>
   <div class="base">
-    <input type="text" v-model="_value" :maxlength="max" /><span>{{ `${_value?.length}/${max}` }}</span>
+    <input :type="inputType" :autocomplete="autocomplete" v-model="_value" :maxlength="max" :readonly="readonly" /><span v-if="!readonly">{{ `${_value?.length}/${max}` }}</span>
   </div>
 </template>
 
@@ -21,7 +21,8 @@ const _value = computed({
   justify-content: flex-start;
   align-items: flex-end;
 
-  input[type=text] {
+  input {
+    width: 100%;
     border: 1px solid var(--primary-color);
     background: none;
     color: var(--primary-color);
