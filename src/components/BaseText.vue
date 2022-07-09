@@ -24,7 +24,7 @@ const _value = computed({
   input {
     width: 100%;
     border: 1px solid var(--primary-color);
-    background: none;
+    background: var(--background-color);
     color: var(--primary-color);
     padding: 6px;
     font-size: 1.2rem;
