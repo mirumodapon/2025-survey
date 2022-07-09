@@ -66,7 +66,7 @@ const previous = () => {
 const submit = async () => {
   if (loading.value) return
   loading.value = t('送出表單中 ...', 'Send form ...')
-  const res = await fetch(import.meta.env.VITE_BACKEND_URL, { method: 'POST', body: JSON.stringify({...data.value, token: '382937-3423424-325325-353453z'}) })
+  const res = await fetch(import.meta.env.VITE_BACKEND_URL, { method: 'POST', body: JSON.stringify(data.value) })
   const result = await res.json()
   if (result.success) {
     token.value = result.token
