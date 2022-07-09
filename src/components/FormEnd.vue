@@ -67,9 +67,7 @@ h1 {
 }
 
 a {
-  color: var(--primary-color);
   text-align: center;
   display: block;
 }
-
 </style>

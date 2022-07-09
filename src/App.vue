@@ -185,6 +185,10 @@ html, body {
     height: 100%;
     min-height: 100%;
 
+    a {
+      color: var(--primary-color);
+    }
+
     .block {
       flex: 1;
     }
@@ -227,7 +231,5 @@ html, body {
       }
     }
   }
-
-  
 }
 </style>
