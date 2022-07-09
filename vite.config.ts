@@ -13,5 +13,8 @@ export default defineConfig({
     alias: {
       '@': './'
     }
+  },
+  build: {
+    target: ['chrome58', 'ios11', 'es2015']
   }
 })
