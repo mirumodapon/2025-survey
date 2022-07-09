@@ -22,7 +22,7 @@ const error = computed(() => {
 
 <template>
   <div class="base">
-    <BaseText v-model="_value" inputType="email" autocomplete="email" :maxLength="50" />
+    <BaseText v-model="_value" inputType="email" autocomplete="email" :max="99" />
     <div v-if="error" class="error">{{ error }}</div>
   </div>
 </template>
