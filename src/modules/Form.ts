@@ -368,12 +368,36 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
           ]
         }
       },
+      {
+        type: 'Field',
+        key: 'commonly_used_open_source_software',
+        required: true,
+        question: t('你最常使用的開源軟體是？', 'Commonly used open source software?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'Mozilla Firefox',
+            'Chromium',
+            'Mozilla Thunderbird',
+            'Linux (Android)',
+            'Libre Office',
+            'Open Office',
+            'GIMP',
+            'Inkscape',
+            'Krita',
+            'Blender'
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
       { type: 'Guard', to: jumpToCOSCUPGuard('is_allow_coc') }
     ],
     [
       {
         type: 'Field',
         key: 'commonly_used_languages',
+        required: true,
         question: t('過去一年中，你最常使用的程式、腳本、標記式語言是什麼？（若無可跳過此題）', 'Which programming, scripting, and markup languages have you done extensive development work in over the past year? (If not, you can skip this question)'),
         config: {
           type: 'multi-option',
@@ -385,6 +409,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'favorite_languages',
+        required: true,
         question: t('喜歡的程式語言？', 'Favorite programming languages?'),
         config: {
           type: 'multi-option',
@@ -396,6 +421,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'annoying_languages',
+        required: true,
         question: t('討厭的程式語言？', 'Annoying programming languages?'),
         config: {
           type: 'multi-option',
@@ -407,6 +433,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'commonly_develop_platforms',
+        required: true,
         question: t('最常開發的平臺？', 'For which platforms do you develop?'),
         config: {
           type: 'multi-option',
@@ -429,6 +456,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'commonly_used_editors',
+        required: true,
         question: t('最常使用的編輯器或 IDE ？', 'Most commonly used editors or IDEs?'),
         config: {
           type: 'multi-option',
@@ -451,6 +479,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'commonly_used_os',
+        required: true,
         question: t('平常使用的作業系統？', 'Commonly used operating systems?'),
         config: {
           type: 'multi-option',
@@ -466,6 +495,54 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'CentOS (including Stream & Rocky Linux)',
             'openSUSE Linux',
             'macOS',
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_used_web_browsers',
+        required: true,
+        question: t('最常使用的瀏覽器？', 'Commonly used web browsers?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'Google Chrome',
+            'Mozilla Firefox',
+            'Apple Safari',
+            'Microsoft Edge',
+            'Vivaldi',
+            'Brave',
+            'Opera',
+            'Yandex',
+            'Internet Explore',
+            'UC Browser'
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_used_database',
+        required: true,
+        question: t('最常使用的資料庫？', 'Commonly used database?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'MySQL',
+            'MariaDB',
+            'PostgreSQL',
+            'Microsoft SQL Server',
+            'MongoDB',
+            'Redis',
+            'SQLite',
+            'Elasticsearch',
+            'Oracle Database',
+            'CouchDB',
+            'Neo4j',
+            'ClickHouse'
           ]),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
