@@ -28,7 +28,7 @@ const lang = computed({
       </template>
       <template v-else>
         <li>Every year, Stack Overflow publishes a Developer Survey for people to get to know the Stack Overflow community. As Asia's largest open source conference, we're doing this survey to give you a glimpse of COSCUP attendees!</li>
-      <li>The purpose of this survey is to understand the demographics of the COSCUP audience. We will collect no personally identifiable information. We'll release the survey results during the COSCUP, and the survey will be open for completion after the conference.</li>
+        <li>The purpose of this survey is to understand the demographics of the COSCUP audience. We will collect no personally identifiable information. We'll release the survey results during the COSCUP, and the survey will be open for completion after the conference.</li>
       </template>
     </ul>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />

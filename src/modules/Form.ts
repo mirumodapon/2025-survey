@@ -398,7 +398,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         type: 'Field',
         key: 'commonly_used_languages',
         required: true,
-        question: t('過去一年中，你最常使用的程式、腳本、標記式語言是什麼？（若無可跳過此題）', 'Which programming, scripting, and markup languages have you done extensive development work in over the past year? (If not, you can skip this question)'),
+        question: t('過去一年中，你最常使用的程式、腳本、標記式語言是什麼？', 'Which programming, scripting, and markup languages have you done extensive development work in over the past year?'),
         config: {
           type: 'multi-option',
           options: PROGRAMMING_LANGUAGE_OPTIONS,

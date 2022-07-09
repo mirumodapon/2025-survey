@@ -113,6 +113,8 @@ const comp = computed(() => {
   ] as const
 })
 
+const t = (zh: string, en: string) => props.lang === 'zh' ? zh : en
+
 const isVueComp = (c: unknown) => {
   return typeof c !== 'string'
 }
@@ -122,7 +124,7 @@ const isVueComp = (c: unknown) => {
 <template>
   <section :class="{base: true, inline}">
     <h3 v-if="question" class="question">
-      <slot>{{ question }}</slot>
+      <slot>{{ `${question}${config.type === 'multi-option' && config.maxChosen ? t(`(最多選 ${config.maxChosen} 項)`, `(Select up to ${config.maxChosen} items)`) : ''}` }}</slot>
       <span v-if="required" class="required">*</span>
     </h3>
     <div class="answer">
