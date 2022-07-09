@@ -33,7 +33,6 @@ const active = computed(() => props.value === _value.value)
   font-size: 1.2rem;
   overflow: hidden;
   position: relative;
-  line-height: 34px;
   user-select: none;
 
   input[type=radio] {
