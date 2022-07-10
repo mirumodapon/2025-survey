@@ -18,7 +18,7 @@ const lang = computed({
         COSCUP x KCD Taiwan 2022 參與者大調查
       </template>
       <template v-else>
-        COSCUP x KCD Taiwan 2022 Survey
+        COSCUP x KCD Taiwan 2022 Attendee Survey
       </template>
     </h1>
     <ul class="description">
