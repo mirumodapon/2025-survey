@@ -26,10 +26,25 @@ export const jumpToRole: FormGuard = (data, step, config) => {
   const usersStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'know_license'))
   const promotersStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'why_promote_open_source'))
 
-  if (data.open_source_role === '開發者') return codersStep
-  if (data.open_source_role === '使用者') return usersStep
-  if (data.open_source_role === '推廣者') return promotersStep
+  if (Array.isArray(data.open_source_role) && data.open_source_role.includes('開發者')) return codersStep
+  if (Array.isArray(data.open_source_role) && data.open_source_role.includes('使用者')) return usersStep
+  if (Array.isArray(data.open_source_role) && data.open_source_role.includes('推廣者')) return promotersStep
   return false
+}
+
+export const jumpToOtherRoleOrCOSCUP: FormGuard = (data, step, config) => {
+  const codersStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'commonly_used_languages'))
+  const usersStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'know_license'))
+  const promotersStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'why_promote_open_source'))
+  const coscupStep = config.findIndex((el) => el.find((e) => e.type === 'Field' && e.key === 'what_hope_coscup'))
+
+  if (step === codersStep) {
+    if (Array.isArray(data.open_source_role) && data.open_source_role.includes('使用者')) return usersStep
+    if (Array.isArray(data.open_source_role) && data.open_source_role.includes('推廣者')) return promotersStep
+  } else if (step === usersStep) {
+    if (Array.isArray(data.open_source_role) && data.open_source_role.includes('推廣者')) return promotersStep
+  }
+  return coscupStep
 }
 
 export const verifyCaptcha =  (lang: string): FormGuard => (data) => {

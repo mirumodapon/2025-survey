@@ -1,5 +1,5 @@
 import { FormConfig, FormItem, DataType } from '../types'
-import { jumpToCOSCUPGuard, jumpToRole, requiredAgree, requiredGuard, verifyCaptcha } from './Guards'
+import { jumpToCOSCUPGuard, jumpToOtherRoleOrCOSCUP, jumpToRole, requiredAgree, requiredGuard, verifyCaptcha } from './Guards'
 
 export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataType, lang: string) => FormConfig = (t, data, lang) => {
 
@@ -299,7 +299,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         required: true,
         question: t('你在開放原始碼的運動中扮演的角色？', 'What is your role in the Open Source movement?'),
         config: {
-          type: 'single-option',
+          type: 'multi-option',
           options: makeOptions([
             ['開發者', 'Coders'],
             ['使用者', 'Users'],
@@ -308,92 +308,6 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         }
       },
       { type: 'Guard', to: jumpToRole }
-    ],
-    [
-      {
-        type: 'Field',
-        key: 'know_license',
-        required: true,
-        question: t('聽過與了解哪些常見自由及開放原始碼軟體許可證？', 'What is some Free and Open Source Software license agreements you have heard of and know?'),
-        config: {
-          type: 'multi-option',
-          options:  makeProOptions([
-            'MIT',
-            'ISC',
-            'WTFPL',
-            '(L/A)GPL 2.0',
-            '(L/A)GPL 3.0',
-            'MPL',
-            'Apache 2.0',
-            'BSD',
-            'Creative Commons license',
-          ]),
-          other: { text: t('其他', 'Other') }
-        }
-      },
-      {
-        type: 'Field',
-        key: 'is_sponsored_open_source',
-        required: true,
-        question: t('是否曾經付費或贊助過任何開源專案或貢獻者？', 'Have you ever paid for or sponsored any open source projects or contributors?'),
-        config: {
-          type: 'single-option',
-          options: [
-            { text: t('是', 'Yes'), value: true },
-            { text: t('否', 'No'), value: false }
-          ]
-        }
-      },
-      {
-        type: 'Field',
-        key: 'is_open_source_no_paid',
-        required: true,
-        question: t('你知道開源不意味者一定要免費嗎？', 'Do you know that open source doesn\'t mean it has to be free?'),
-        config: {
-          type: 'single-option',
-          options: [
-            { text: t('是', 'Yes'), value: true },
-            { text: t('否', 'No'), value: false }
-          ]
-        }
-      },
-      {
-        type: 'Field',
-        key: 'is_rely_open_source',
-        required: true,
-        question: t('你的工作中有使用或依賴開源嗎？', 'Do you use or rely on open source in your work?'),
-        config: {
-          type: 'single-option',
-          options: [
-            { text: t('是', 'Yes'), value: true },
-            { text: t('否', 'No'), value: false }
-          ]
-        }
-      },
-      {
-        type: 'Field',
-        key: 'commonly_used_open_source_software',
-        required: true,
-        question: t('你最常使用的開源軟體是？', 'Commonly used open source software?'),
-        config: {
-          type: 'multi-option',
-          options: makeProOptions([
-            'Mozilla Firefox',
-            'Chromium',
-            'Mozilla Thunderbird',
-            'Linux (Android)',
-            'Libre Office',
-            'Open Office',
-            'GIMP',
-            'Inkscape',
-            'Krita',
-            'Blender'
-          ]),
-          maxChosen: 3,
-          other: { text: t('其他', 'Other') }
-        }
-      },
-      { type: 'Guard', to: jumpToCOSCUPGuard('is_allow_coc') }
     ],
     [
       {
@@ -550,7 +464,93 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
           other: { text: t('其他', 'Other') }
         }
       },
-      { type: 'Guard', to: jumpToCOSCUPGuard('is_allow_coc') }
+      { type: 'Guard', to: jumpToOtherRoleOrCOSCUP }
+    ],
+    [
+      {
+        type: 'Field',
+        key: 'know_license',
+        required: true,
+        question: t('聽過與了解哪些常見自由及開放原始碼軟體許可證？', 'What is some Free and Open Source Software license agreements you have heard of and know?'),
+        config: {
+          type: 'multi-option',
+          options:  makeProOptions([
+            'MIT',
+            'ISC',
+            'WTFPL',
+            '(L/A)GPL 2.0',
+            '(L/A)GPL 3.0',
+            'MPL',
+            'Apache 2.0',
+            'BSD',
+            'Creative Commons license',
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_sponsored_open_source',
+        required: true,
+        question: t('是否曾經付費或贊助過任何開源專案或貢獻者？', 'Have you ever paid for or sponsored any open source projects or contributors?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_open_source_no_paid',
+        required: true,
+        question: t('你知道開源不意味者一定要免費嗎？', 'Do you know that open source doesn\'t mean it has to be free?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      {
+        type: 'Field',
+        key: 'is_rely_open_source',
+        required: true,
+        question: t('你的工作中有使用或依賴開源嗎？', 'Do you use or rely on open source in your work?'),
+        config: {
+          type: 'single-option',
+          options: [
+            { text: t('是', 'Yes'), value: true },
+            { text: t('否', 'No'), value: false }
+          ]
+        }
+      },
+      {
+        type: 'Field',
+        key: 'commonly_used_open_source_software',
+        required: true,
+        question: t('你最常使用的開源軟體是？', 'Commonly used open source software?'),
+        config: {
+          type: 'multi-option',
+          options: makeProOptions([
+            'Mozilla Firefox',
+            'Chromium',
+            'Mozilla Thunderbird',
+            'Linux (Android)',
+            'Libre Office',
+            'Open Office',
+            'GIMP',
+            'Inkscape',
+            'Krita',
+            'Blender'
+          ]),
+          maxChosen: 3,
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      { type: 'Guard', to: jumpToOtherRoleOrCOSCUP }
     ],
     [
       {
