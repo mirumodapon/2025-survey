@@ -11,7 +11,7 @@ const _value = computed({
 
 const error = computed(() => {
   if (_value.value === '') return ''
-  if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(_value.value)) return props.lang === 'zh' ? '錯誤的 Email 格式' : 'Invalid email format'
+  if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,})$/.test(_value.value)) return props.lang === 'zh' ? '錯誤的 Email 格式' : 'Invalid email format'
   const [_, domain] = _value.value.split('@')
   if (/[gmail]{4,5}/.test(domain) && domain !== 'gmail.com') {
     return 'gmail.com?'
