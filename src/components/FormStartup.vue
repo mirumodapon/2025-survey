@@ -33,7 +33,7 @@ const lang = computed({
     </ul>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
     <div class="branding">
-      Source code: <a href="https://github.com/COSCUP/coscup2022-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
+      Source code: <a href="https://github.com/COSCUP/2022-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
     </div>
   </section>
 </template>
