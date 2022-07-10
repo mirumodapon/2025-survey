@@ -12,7 +12,7 @@ const lang = computed({
 </script>
 
 <template>
-  <section class="base">
+  <section class="base2">
     <h1>
       <template v-if="lang === 'zh'">
         COSCUP x KCD Taiwan 2022 參與者大調查
@@ -32,12 +32,17 @@ const lang = computed({
       </template>
     </ul>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    <div class="branding">
+      Source code: <a href="https://github.com/COSCUP/coscup2022-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
+    </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.base {
+.base2 {
   flex: 1 1;
+  height: 100%;
+  position: relative;
 }
 h1 {
   font-size: 1.4rem;
@@ -46,5 +51,15 @@ h1 {
 .description {
   font-size: 1.2rem;
   text-align: start;
+}
+
+.branding {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
