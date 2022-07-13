@@ -95,7 +95,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['男', 'Man'],
             ['女', 'Woman'],
             ['不方便告知', 'Prefer not to say'],
-            ['非二元論、變性人或不符合性別要求的人', 'Non-binary, genderqueer, or gender non-conforming']
+            ['非二元、性別酷兒、性別流動、間性別或無性別', 'Non-binary, genderqueer, or gender non-conforming']
           ]),
           other: { text: t('或專屬你的詞', 'Or, in your own words:') }
         }
