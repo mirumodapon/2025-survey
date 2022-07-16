@@ -33,7 +33,7 @@ const forget = () => {
       <BaseText readonly :model-value="url" @click="copy" />
       {{ copyMessage }}
     </div>
-    <BaseButton color="#94E73A" @click="forget">{{ t('移除此裝置的參與憑證並重填問券', 'Remove the participation certificate from the device and refill the survey.') }}</BaseButton>
+    <BaseButton color="#94E73A" @click="forget">{{ t('移除此裝置的參與憑證並重填問卷', 'Remove the participation certificate from the device and refill the survey.') }}</BaseButton>
   </section>
 </template>
 
