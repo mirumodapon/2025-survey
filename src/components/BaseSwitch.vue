@@ -60,6 +60,7 @@ const click = () => {
     }
 
     input[type=radio] {
+      -webkit-appearance: none;
       appearance: none;
       width: 40px;
       height: 40px;
