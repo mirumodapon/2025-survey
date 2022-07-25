@@ -41,7 +41,7 @@ setInterval(update, 2 * 60 * 1000)
       <session
         v-for="item in current"
         :key="item.key"
-      >
+        :id="item.key">
         <h2>{{ item.question }}</h2>
         <Chart :config="item" />
       </session>
