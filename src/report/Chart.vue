@@ -41,6 +41,9 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.checkInViewport);
     this.checkInViewport();
+    setTimeout(() => {
+      this.checkInViewport();
+    }, 100);
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.checkInViewport);
@@ -86,7 +89,7 @@ export default {
           chart: {
             id: `chart_${this.config.key}`,
             type: this.config.type,
-            background: '#282635',
+            background: '#333043',
             toolbar: {
               show: false
             },

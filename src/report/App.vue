@@ -34,10 +34,12 @@ setInterval(update, 2 * 60 * 1000)
 <template>
   <main class="main">
     <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2022 Developer Survey Report">
-    <h1>COSCUP 2022 Developer Survey Report</h1>
-    <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
-        href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
-    <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    <section>
+      <h1>COSCUP 2022 Developer Survey Report</h1>
+      <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
+          href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
+      <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    </section>
     <div class="list">
       <Chart :config="item" v-for="item in current" :key="item.key + lang" />
     </div>
@@ -74,8 +76,25 @@ body {
     width: min(calc(100vw - 32px), 1200px);
     margin: 0 auto;
 
+    .banner {
+      width: 100%;
+      border-radius: 16px;
+      margin: 16px 0;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
     a {
       color: var(--primary-color);
+    }
+
+    section {
+
+      border-radius: 16px;
+      padding: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      background-color: #333043;
     }
 
     .list {
@@ -87,9 +106,6 @@ body {
       }
 
       >section {
-        border-radius: 16px;
-        padding: 16px;
-        border: 1px solid #343144;
         max-width: calc(100vw - 32px);
         break-inside: avoid;
 
@@ -100,8 +116,5 @@ body {
     }
   }
 
-  .banner {
-    width: 100%;
-  }
 }
 </style>
