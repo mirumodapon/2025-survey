@@ -35,16 +35,11 @@ setInterval(update, 2 * 60 * 1000)
   <main class="main">
     <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2022 Developer Survey Report">
     <h1>COSCUP 2022 Developer Survey Report</h1>
-    <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
+    <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
+        href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
     <div class="list">
-      <session
-        v-for="item in current"
-        :key="item.key"
-        :id="item.key">
-        <h2>{{ item.question }}</h2>
-        <Chart :config="item" />
-      </session>
+      <Chart :config="item" v-for="item in current" :key="item.key + lang" />
     </div>
   </main>
 </template>
@@ -57,14 +52,14 @@ setInterval(update, 2 * 60 * 1000)
   --background-color: #282635;
 }
 
-html, body {
-  height: 100%;
-  min-height: 100%;
+html,
+body {
   max-width: 1200px;
   margin: 0 auto;
   font-size: 14px;
   background-color: var(--background-color);
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,12 +82,15 @@ html, body {
     }
 
     .list {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
 
-      >* {
-        flex: 1 1 50%;
-        min-width: 300px;
+      >section {
+        border-radius: 16px;
+        padding: 16px;
+        border: 1px solid #343144;
       }
     }
   }
