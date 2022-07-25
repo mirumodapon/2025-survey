@@ -475,7 +475,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         type: 'Field',
         key: 'know_license',
         required: true,
-        question: t('聽過與了解哪些常見自由及開放原始碼軟體許可證？', 'What is some Free and Open Source Software license agreements you have heard of and know?'),
+        question: t('聽過與了解哪些常見自由及開放原始碼軟體授權條款？', 'What is some Free and Open Source Software license agreements you have heard of and know?'),
         config: {
           type: 'multi-option',
           options:  makeProOptions([
