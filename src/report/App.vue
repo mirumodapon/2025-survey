@@ -54,10 +54,13 @@ setInterval(update, 2 * 60 * 1000)
 
 html,
 body {
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   font-size: 14px;
   background-color: var(--background-color);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
@@ -66,16 +69,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
   text-align: center;
-  height: 100%;
-  min-height: 100%;
 
   .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    height: 100%;
-    min-height: 100%;
+    width: min(calc(100vw - 32px), 1200px);
+    margin: 0 auto;
 
     a {
       color: var(--primary-color);
@@ -91,6 +88,8 @@ body {
         border-radius: 16px;
         padding: 16px;
         border: 1px solid #343144;
+        max-width: calc(100vw - 32px);
+        overflow: hidden;
       }
     }
   }

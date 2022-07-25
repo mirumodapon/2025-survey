@@ -30,7 +30,7 @@ export default {
       if (el) {
         const rect = el.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        if (rect.top >= 0 && rect.bottom <= viewportHeight) {
+        if (rect.top >= -100 && rect.top <= viewportHeight + 100) {
           this.showChart = true;
         }
       }
@@ -95,8 +95,23 @@ export default {
           },
           plotOptions: {
             bar: {
-              horizontal: true
+              horizontal: true,
             }
+          },
+          dataLabels: {
+            textAnchor: 'end',
+            dropShadow: {
+              enabled: false
+            },
+            background: {
+              enabled: true,
+              opacity: 0.8,
+              blur: 1,
+              foreColor: '#000',
+            }
+          },
+          tooltip: {
+            fillSeriesColor: false,
           },
           theme: {
             mode: 'dark',
@@ -111,10 +126,6 @@ export default {
           stroke: {
             show: false
           }
-        }
-        if (this.config.type == 'bar') {
-          result.chart.height = this.config.data.labels.length * 30 + 100
-          console.log(result.chart.height)
         }
         if (this.config.type == 'pie') {
           result.labels = this.config.data.labels
