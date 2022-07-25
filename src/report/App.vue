@@ -79,17 +79,23 @@ body {
     }
 
     .list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-      gap: 16px;
       margin: 16px 0;
+
+      @media screen and (min-width: 769px) {
+        column-count: 2;
+        gap: 16px;
+      }
 
       >section {
         border-radius: 16px;
         padding: 16px;
         border: 1px solid #343144;
         max-width: calc(100vw - 32px);
-        overflow: hidden;
+        break-inside: avoid;
+
+        &:not(:first-child) {
+          margin-top: 16px;
+        }
       }
     }
   }

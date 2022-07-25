@@ -1,11 +1,13 @@
 <template>
-  <section :id="config.key" :height="height">
+  <section :id="config.key">
     <h2 ref="chart-wrapper">{{ config.question }}</h2>
-    <apexchart
-      v-if="config && showChart"
-      width="100%" :height="height"
-      :options="chartOptions"
-      :series="series" />
+    <div :style="`height: ${height}px`">
+      <apexchart
+        v-if="config && showChart"
+        width="100%" :height="height"
+        :options="chartOptions"
+        :series="series" />
+    </div>
   </section>
 </template>
 <script>
