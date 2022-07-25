@@ -22,9 +22,9 @@ const step = ref(0)
 
 const t = (zh: string, en: string) => lang.value === 'zh' ? zh : en
 
-const questions = computed(() => makeFormConfig(t, data.value, lang.value))
+const questions = computed(() => makeFormConfig(t, data.value))
 
-const data = ref(getDefaultFormData(makeFormConfig(t, { captchaToken: '' }, lang.value)))
+const data = ref(getDefaultFormData(makeFormConfig(t, { captchaToken: '' })))
 
 const current = computed(() => questions.value[step.value])
 

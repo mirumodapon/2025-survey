@@ -26,8 +26,10 @@ export type BaseFieldConfig ={
 
 export type FormGuard = (data: DataType, step: number, config: FormConfig) => number | boolean
 
+export type FormField = { type: 'Field', key: string, required?: boolean, question: string, config: BaseFieldConfig }
+
 export type FormItem = { type: 'FormStartup' }
-  | { type: 'Field', key: string, required?: boolean, question: string, config: BaseFieldConfig }
+  | FormField
   | { type: 'Explain', text: string }
   | { type: 'Captcha' }
   | { type: 'FormEnd' }

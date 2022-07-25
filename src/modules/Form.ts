@@ -1,7 +1,7 @@
 import { FormConfig, FormItem, DataType } from '../types'
 import { jumpToCOSCUPGuard, jumpToOtherRoleOrCOSCUP, jumpToRole, requiredAgree, requiredGuard, verifyCaptcha } from './Guards'
 
-export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataType, lang: string) => FormConfig = (t, data, lang) => {
+export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataType) => FormConfig = (t, data) => {
 
   const makeOptions = (options: [zh: string, en: string][]) =>
     options.map((option) => ({ text: t(option[0], option[1]), value: option[0] }))
@@ -364,7 +364,11 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'WebAssembly',
             'Consoles(Xbox/PlayStation/Nintendo)',
             'I don\'t develop anything'
-          ]),
+          ]).map((el) => (
+            el.value !== 'Consoles(Xbox/PlayStation/Nintendo)')
+              ? el
+              : { text: 'Consoles (Xbox/PlayStation/Nintendo)', value: 'Consoles(Xbox/PlayStation/Nintendo)' }
+          ),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
         }
@@ -622,8 +626,8 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       { type: 'Field', key: 'is_allow_coc', question: '', required: true, config: { type: 'agree', question: t('我了解並願意遵守 CoC 規範', 'I understand and am willing to abide by the CoC regulations') }, inline: true },
       { type: 'Coc' },
       { type: 'Captcha' },
-      { type: 'Guard', to: requiredAgree(lang) },
-      { type: 'Guard', to: verifyCaptcha(lang) }
+      { type: 'Guard', to: requiredAgree(t) },
+      { type: 'Guard', to: verifyCaptcha(t) }
     ]
   ]
 }

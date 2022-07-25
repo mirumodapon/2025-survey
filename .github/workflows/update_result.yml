@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL}}
+      GOOGLE_PRIVATE_KEY: ${{secrets.GOOGLE_PRIVATE_KEY}}
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: lts
+          cache: 'yarn'
+
+      - name: Install dependencies 👨🏻‍💻
+        run: yarn install --frozen-lockfile
+
+      - name: Build production 🚧
+        run: yarn fetch:result
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update result.json'
+          default_author: github_actions

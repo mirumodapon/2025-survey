@@ -47,15 +47,15 @@ export const jumpToOtherRoleOrCOSCUP: FormGuard = (data, step, config) => {
   return coscupStep
 }
 
-export const verifyCaptcha =  (lang: string): FormGuard => (data) => {
+export const verifyCaptcha =  (t: (zh: string, en: string) => string): FormGuard => (data) => {
   const result = !!(data.captchaToken)
-  if (!result) alert(lang === 'zh' ? '請完成驗證': 'Please finish captcha')
+  if (!result) alert(t('請完成驗證', 'Please finish captcha'))
   return result
 }
 
-export const requiredAgree = (lang: string): FormGuard => (data) => {
+export const requiredAgree = (t: (zh: string, en: string) => string): FormGuard => (data) => {
   const result = !!data.is_allow_coc
-  if (!result) alert(lang === 'zh' ? '請同意 CoC': 'Please agree CoC')
+  if (!result) alert(t('請同意 CoC', 'Please agree CoC'))
   return result
 }
 
