@@ -34,17 +34,14 @@ setInterval(update, 2 * 60 * 1000)
 <template>
   <main class="main">
     <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2022 Developer Survey Report">
-    <h1>COSCUP 2022 Developer Survey Report</h1>
-    <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
-    <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    <section>
+      <h1>COSCUP 2022 Developer Survey Report</h1>
+      <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
+          href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
+      <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    </section>
     <div class="list">
-      <session
-        v-for="item in current"
-        :key="item.key"
-      >
-        <h2>{{ item.question }}</h2>
-        <Chart :config="item" />
-      </session>
+      <Chart :config="item" v-for="item in current" :key="item.key + lang" />
     </div>
   </main>
 </template>
@@ -57,48 +54,67 @@ setInterval(update, 2 * 60 * 1000)
   --background-color: #282635;
 }
 
-html, body {
-  height: 100%;
-  min-height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+html,
+body {
+  margin: 0;
   font-size: 14px;
   background-color: var(--background-color);
 }
+
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
   text-align: center;
-  height: 100%;
-  min-height: 100%;
 
   .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    height: 100%;
-    min-height: 100%;
+    width: min(calc(100vw - 32px), 1200px);
+    margin: 0 auto;
+
+    .banner {
+      width: 100%;
+      border-radius: 16px;
+      margin: 16px 0;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
 
     a {
       color: var(--primary-color);
     }
 
-    .list {
-      display: flex;
-      flex-wrap: wrap;
+    section {
 
-      >* {
-        flex: 1 1 50%;
-        min-width: 300px;
+      border-radius: 16px;
+      padding: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      background-color: #333043;
+    }
+
+    .list {
+      margin: 16px 0;
+
+      @media screen and (min-width: 769px) {
+        column-count: 2;
+        gap: 16px;
+      }
+
+      >section {
+        max-width: calc(100vw - 32px);
+        break-inside: avoid;
+
+        &:not(:first-child) {
+          margin-top: 16px;
+        }
       }
     }
   }
 
-  .banner {
-    width: 100%;
-  }
 }
 </style>
