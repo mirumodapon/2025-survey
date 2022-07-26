@@ -9,7 +9,7 @@ import palette from 'google-palette'
 config({ path: join(__dirname, '../.env.local') })
 const SPREADSHEET_ID = '1AYf_qzrxlp7K2SdsgUfjpqIY7qiPOG710zsMpyhpCCo'
 
-async function getSource () {
+async function getSource() {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
   await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -31,7 +31,7 @@ const DEFAULT_CHART_TYPE_TABLE = {
 
 const DEFAULT_CHART_TYPES = Object.values(DEFAULT_CHART_TYPE_TABLE)
 
-function getChartType (item: FormField): (typeof DEFAULT_CHART_TYPES)[number] | null {
+function getChartType(item: FormField): (typeof DEFAULT_CHART_TYPES)[number] | null {
   return DEFAULT_CHART_TYPE_TABLE?.[item.config.type] ?? null
 }
 
@@ -69,7 +69,7 @@ const getLabelText = (text: string) => {
   return text
 }
 
-function getChartConfig (t: (zh: string, en: string) => string, field: FormField, source: DataType[]) {
+function getChartConfig(t: (zh: string, en: string) => string, field: FormField, source: DataType[]) {
   const type = getChartType(field)
   if (!type) return null
 
@@ -105,16 +105,7 @@ function getChartConfig (t: (zh: string, en: string) => string, field: FormField
       question: (field.config.type === 'agree') ? field.config.question : field.question,
       data: {
         labels: labels.map((l) => l.text),
-        datasets: [{
-          data,
-          backgroundColor: generateColors(data.length),
-          color: '#fff'
-        }]
-      },
-      options: {
-        layout: {
-          padding: 10
-        }
+        datas: data
       }
     }
   }
@@ -144,29 +135,8 @@ function getChartConfig (t: (zh: string, en: string) => string, field: FormField
       question: (field.config.type === 'agree') ? field.config.question : field.question,
       data: {
         labels: mixed.map((l) => getLabelText(l.label.text)),
-        datasets: [{
-          label: field.question,
-          data: mixed.map((d) => d.data),
-          backgroundColor: generateColors(data.length),
-          color: '#fff'
-        }]
+        datas: mixed.map((d) => d.data),
       },
-      options: {
-        aspectRatio: mixed.length > 15 ? 0.5 : 1,
-        indexAxis: 'y',
-        layout: {
-          padding: 5
-        },
-        scales: {
-          x: {
-            stacked: false
-          }
-        }
-      },
-      custom: {
-        limit: 20,
-        skipZero: true
-      }
     }
   }
 }

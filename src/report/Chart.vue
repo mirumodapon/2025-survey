@@ -51,20 +51,11 @@ export default {
   computed: {
     series() {
       if (this.config) {
+        let { labels, datas } = this.config.data;
         if (this.config.type == 'bar') {
-          let datasets;
-          if (typeof this.config.data.datasets.data == 'array') {
-            datasets = this.config.data.datasets
-          } else {
-            datasets = this.config.data.datasets[0]
-          }
-          let numbers = datasets.data
-          let fillColors = datasets.backgroundColor
-          let labels = this.config.data.labels
-          let data = numbers.map((x, i) => ({
+          let data = datas.map((x, i) => ({
             y: x,
-            x: labels[i],
-            fillColor: fillColors[i]
+            x: labels[i]
           }))
           return [{
             name: this.config.question,
@@ -72,19 +63,14 @@ export default {
           }]
         }
         if (this.config.type == 'pie') {
-          return this.config.data.datasets[0].data
+          return datas
         }
       }
       return null
     },
     chartOptions() {
       if (this.config) {
-        let datasets;
-        if (typeof this.config.data.datasets.data == 'array') {
-          datasets = this.config.data.datasets
-        } else {
-          datasets = this.config.data.datasets[0]
-        }
+        let { labels, datas } = this.config.data;
         let result = {
           chart: {
             id: `chart_${this.config.key}`,
@@ -123,7 +109,7 @@ export default {
             palette: 'palette3'
           },
           xaxis: {
-            categories: this.config.data.labels
+            categories: labels
           },
           legend: {
             position: 'top'
@@ -133,7 +119,7 @@ export default {
           }
         }
         if (this.config.type == 'pie') {
-          result.labels = this.config.data.labels
+          result.labels = labels
         }
         return result
       }
