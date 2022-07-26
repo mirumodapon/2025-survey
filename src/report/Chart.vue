@@ -87,7 +87,8 @@ export default {
           plotOptions: {
             bar: {
               horizontal: true,
-            }
+              distributed: true,
+            },
           },
           dataLabels: {
             textAnchor: 'end',
@@ -108,15 +109,18 @@ export default {
             mode: 'dark',
             palette: 'palette3'
           },
-          xaxis: {
-            categories: labels
-          },
           legend: {
             position: 'top'
+          },
+          xaxis: {
+            categories: labels
           },
           stroke: {
             show: false
           }
+        }
+        if (this.config.type == 'bar') {
+          result.legend.show = false;
         }
         if (this.config.type == 'pie') {
           result.labels = labels
