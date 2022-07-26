@@ -72,6 +72,7 @@ export default {
       if (this.config) {
         let { labels, datas } = this.config.data;
         let result = {
+          colors: ['#33B2DF', '#546E7A', '#D4526E', '#13D8AA', '#A5978B', '#4ECDC4', '#C7F464', '#81D4FA', '#546E7A', '#FD6A6A'],
           chart: {
             id: `chart_${this.config.key}`,
             type: this.config.type,
