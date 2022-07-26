@@ -11,12 +11,8 @@
   </section>
 </template>
 <script>
-import VueApexCharts from "vue3-apexcharts";
 export default {
   props: ['config'],
-  components: {
-    apexchart: VueApexCharts,
-  },
   data() {
     return ({
       showChart: false,
