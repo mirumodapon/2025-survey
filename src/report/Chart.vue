@@ -80,7 +80,6 @@ export default {
               show: false
             },
           },
-          colors: datasets.backgroundColor,
           markers: {
             size: 0,
           },
