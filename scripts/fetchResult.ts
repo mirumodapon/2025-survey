@@ -108,6 +108,7 @@ function getChartConfig (t: (zh: string, en: string) => string, field: FormField
         datasets: [{
           data,
           backgroundColor: generateColors(data.length),
+          color: '#fff'
         }]
       },
       options: {
@@ -146,7 +147,8 @@ function getChartConfig (t: (zh: string, en: string) => string, field: FormField
         datasets: [{
           label: field.question,
           data: mixed.map((d) => d.data),
-          backgroundColor: generateColors(data.length)
+          backgroundColor: generateColors(data.length),
+          color: '#fff'
         }]
       },
       options: {
