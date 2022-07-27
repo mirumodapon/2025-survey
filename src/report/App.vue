@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { getDefaultFormData, makeFormConfig } from '../modules/Form'
 
 import type ResultType from '../../public/result.json'
@@ -27,8 +27,19 @@ const update = async () => {
   data.value = await res.json()
 }
 
-update()
 setInterval(update, 2 * 60 * 1000)
+
+onMounted(async () => {
+  await update()
+  // check hash & scroll to chart
+  const hash = window.location.hash
+  if (hash) {
+    const el = document.querySelector(hash)
+    if (el) {
+      el.scrollIntoView()
+    }
+  }
+})
 </script>
 
 <template>
