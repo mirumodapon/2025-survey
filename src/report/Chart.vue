@@ -1,7 +1,7 @@
 <template>
   <section :id="config.key">
     <h2 ref="chart-wrapper"><a class="question-link" :href="`#${config.key}`">#</a> {{ config.question }}</h2>
-    <div :style="`height: ${height}px`">
+    <div :style="`height: ${height}`">
       <apexchart
         v-if="config && showChart"
         width="100%" :height="height"
@@ -72,7 +72,7 @@ export default {
           chart: {
             id: `chart_${this.config.key}`,
             type: this.config.type,
-            background: '#333043',
+            background: 'transparent',
             toolbar: {
               show: false
             },
@@ -128,10 +128,10 @@ export default {
     height() {
       if (this.config) {
         if (this.config.type == 'bar') {
-          return this.config.data.labels.length * 24 + 100
+          return `${this.config.data.labels.length * 24 + 100}px`
         }
         if (this.config.type == 'pie') {
-          return 512
+          return `512px`
         }
       }
       return 'auto'
