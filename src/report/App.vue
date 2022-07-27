@@ -59,6 +59,7 @@ body {
   margin: 0;
   font-size: 14px;
   background-color: var(--background-color);
+  scroll-behavior: smooth;
 }
 
 * {
@@ -108,6 +109,21 @@ body {
       >section {
         max-width: calc(100vw - 32px);
         break-inside: avoid;
+
+        h2 {
+          .question-link {
+            opacity: 0.5;
+            transition: opacity 0.2s ease-in-out;
+            text-decoration: none;
+          }
+
+          &:hover {
+            .question-link {
+              opacity: 1;
+            }
+          }
+
+        }
 
         &:not(:first-child) {
           margin-top: 16px;

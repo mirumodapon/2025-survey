@@ -1,6 +1,6 @@
 <template>
   <section :id="config.key">
-    <h2 ref="chart-wrapper">{{ config.question }}</h2>
+    <h2 ref="chart-wrapper"><a class="question-link" :href="`#${config.key}`">#</a> {{ config.question }}</h2>
     <div :style="`height: ${height}px`">
       <apexchart
         v-if="config && showChart"
