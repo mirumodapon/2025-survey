@@ -436,7 +436,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Brave',
             'Opera',
             'Yandex',
-            'Internet Explore',
+            'Internet Explorer',
             'UC Browser'
           ]),
           maxChosen: 3,
