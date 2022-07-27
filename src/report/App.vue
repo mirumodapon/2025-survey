@@ -74,7 +74,6 @@ body {
   font-size: 14px;
   background-color: var(--background-color);
   scroll-behavior: smooth;
-  scroll-margin-top: 16px;
 }
 
 * {
@@ -124,6 +123,7 @@ body {
       >section {
         max-width: calc(100vw - 32px);
         break-inside: avoid;
+        scroll-margin-top: 16px;
 
         h2 {
           .question-link {
