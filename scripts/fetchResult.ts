@@ -115,7 +115,7 @@ function getChartConfig(t: (zh: string, en: string) => string, field: FormField,
       if (field.config.type === 'multi-option') {
         const options = field.config.options
         const optionValues = options.map((o) => o.value)
-        const possibleValues = uniq(source.map((s) => s[field.key] as string[])).flat()
+        const possibleValues = uniq(source.map((s) => s[field.key] as string[]).flat())
 
         return [
           ...options,
