@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+
 import { getDefaultFormData, makeFormConfig } from '../modules/Form'
 
 import type ResultType from '../../public/result.json'
 import { FormField, FormItem } from '../types'
 import Chart from './Chart.vue'
 import BaseSwitch from '../components/BaseSwitch.vue'
+import resultData from '../../public/result.json'
 
 const getUserDefaultLang = () => {
   const userLanguage = window.navigator.language
@@ -13,7 +15,7 @@ const getUserDefaultLang = () => {
   return 'en'
 }
 
-const data = ref<typeof ResultType | null>(null)
+const data = ref<typeof ResultType | null>(resultData)
 const lang = ref<'zh' | 'en'>(getUserDefaultLang())
 
 const t = (zh: string, en: string) => lang.value === 'zh' ? zh : en
@@ -26,11 +28,9 @@ const update = async () => {
   const res = await fetch(`${import.meta.env.BASE_URL}result.json`)
   data.value = await res.json()
 }
-
 setInterval(update, 2 * 60 * 1000)
 
 onMounted(async () => {
-  await update()
   // check hash & scroll to chart
   const hash = window.location.hash
   if (hash) {
@@ -39,6 +39,7 @@ onMounted(async () => {
       setTimeout(() => {
         el.scrollIntoView()
       }, 100)
+      el.scrollIntoView()
     }
   }
 })

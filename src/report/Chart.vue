@@ -130,6 +130,9 @@ export default {
         if (this.config.type == 'bar') {
           return this.config.data.labels.length * 24 + 100
         }
+        if (this.config.type == 'pie') {
+          return 512
+        }
       }
       return 'auto'
     }
