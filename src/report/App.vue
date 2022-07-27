@@ -36,7 +36,9 @@ onMounted(async () => {
   if (hash) {
     const el = document.querySelector(hash)
     if (el) {
-      el.scrollIntoView()
+      setTimeout(() => {
+        el.scrollIntoView()
+      }, 100)
     }
   }
 })
@@ -71,6 +73,7 @@ body {
   font-size: 14px;
   background-color: var(--background-color);
   scroll-behavior: smooth;
+  scroll-margin-top: 16px;
 }
 
 * {
@@ -136,6 +139,10 @@ body {
 
         }
 
+        &:target {
+          animation: highlight-border 0.4s ease;
+        }
+
         &:not(:first-child) {
           margin-top: 16px;
         }
@@ -143,5 +150,15 @@ body {
     }
   }
 
+}
+
+@keyframes highlight-border {
+  0% {
+    border: 2px solid rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
 }
 </style>
