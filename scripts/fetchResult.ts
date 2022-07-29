@@ -69,11 +69,13 @@ const getLabelText = (text: string) => {
   return text
 }
 
+const hiddenKeys = ['is_allow_coc', 'is_subscribe_newsletter']
+
 function getChartConfig(t: (zh: string, en: string) => string, field: FormField, source: DataType[]) {
   const type = getChartType(field)
   if (!type) return null
 
-  if (field.key === 'is_allow_coc') return null
+  if (hiddenKeys.includes(field.key)) return null
 
   if (type === 'pie') {
     const makeLabels = () => {

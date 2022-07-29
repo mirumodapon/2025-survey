@@ -45,28 +45,32 @@ export default {
     window.removeEventListener('scroll', this.checkInViewport);
   },
   computed: {
+    chartData () {
+      const { labels, datas } = this.config.data;
+
+      return datas
+        .map((x, i) => ({
+          y: x,
+          x: labels[i]
+        }))
+        .filter((d) => d.y > 2)
+    },
     series() {
       if (this.config) {
-        let { labels, datas } = this.config.data;
         if (this.config.type == 'bar') {
-          let data = datas.map((x, i) => ({
-            y: x,
-            x: labels[i]
-          }))
           return [{
             name: this.config.question,
-            data
+            data: this.chartData
           }]
         }
         if (this.config.type == 'pie') {
-          return datas
+          return this.chartData.map((d) => d.y)
         }
       }
       return null
     },
     chartOptions() {
       if (this.config) {
-        let { labels, datas } = this.config.data;
         let result = {
           colors: [
             '#33B2DF', '#D4526E', '#13D8AA', '#5800FF',
@@ -114,7 +118,7 @@ export default {
             position: 'top'
           },
           xaxis: {
-            categories: labels
+            categories: this.chartData.map((d) => d.x)
           },
           stroke: {
             show: false
@@ -124,7 +128,7 @@ export default {
           result.legend.show = false;
         }
         if (this.config.type == 'pie') {
-          result.labels = labels
+          result.labels = this.chartData.map((d) => d.x)
         }
         return result
       }
@@ -133,7 +137,7 @@ export default {
     height() {
       if (this.config) {
         if (this.config.type == 'bar') {
-          return `${this.config.data.labels.length * 24 + 100}px`
+          return `${this.chartData.length * 24 + 100}px`
         }
         if (this.config.type == 'pie') {
           return `512px`
