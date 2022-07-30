@@ -45,6 +45,8 @@ const lang = computed({
   flex: 1 1;
   height: 100%;
   position: relative;
+  padding-bottom: 50px;
+  box-sizing: border-box;
 }
 h1 {
   font-size: 1.4rem;
