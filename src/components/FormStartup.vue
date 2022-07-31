@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import BaseButton from './BaseButton.vue'
 import BaseSwitch from './BaseSwitch.vue'
 
 const props = defineProps({ modelValue: String })
@@ -34,6 +35,7 @@ const lang = computed({
       </template>
     </ul>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
+    <a href="https://coscup.org/2022-survey/report" target="_blank"><BaseButton style="margin-top: 10px" color="#25C2A5">{{ lang === 'zh' ? '查看調查結果' : 'View survey report' }}</BaseButton></a>
     <div class="branding">
       Source code: <a href="https://github.com/COSCUP/2022-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
     </div>
