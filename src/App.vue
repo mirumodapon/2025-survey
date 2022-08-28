@@ -144,9 +144,10 @@ const submit = async () => {
     >
       <BaseProgress :model-value="progress" />
       <div class="action">
-        <BaseButton v-show="step !== 0" color="gray" @click="previous">&lt;&lt; Previous</BaseButton>
+        <a href="https://coscup.org/2022-survey/report" target="_blank"><BaseButton style="margin-top: 10px; width: 100%;text-align: center;" color="#25C2A5">{{ lang === 'zh' ? '查看調查結果' : 'View survey report' }}</BaseButton></a>
+        <!-- <BaseButton v-show="step !== 0" color="gray" @click="previous">&lt;&lt; Previous</BaseButton>
         <BaseButton v-show="(step + 1) < questions.length" color="#94E73A" style="text-align: end" @click="next">Next >></BaseButton>
-        <BaseButton v-show="(step + 1) >= questions.length" color="#94E73A" style="text-align: end" @click="submit">Submit</BaseButton>
+        <BaseButton v-show="(step + 1) >= questions.length" color="#94E73A" style="text-align: end" @click="submit">Submit</BaseButton> -->
       </div>
     </div>
   </main>
