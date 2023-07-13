@@ -61,7 +61,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       { type: 'Explain', text: t('Email 將只在使用者同意訂閱電子報時，提供給電子報系統使用，與問卷內容無關。', 'The email will only be provided to the newsletter system when the user agrees to subscribe to the newsletter and is not related to the content of the survey.') },
       { type: 'Field', key: 'is_subscribe_newsletter', question: '', config: { type: 'agree', question: t('是否願意訂閱電子報？', 'Would you like to subscribe to the COSCUP newsletter?') }, inline: true },
       { type: 'Explain', text: t('訂閱電子報將收到 COSCUP 未來的相關訊息。', 'Subscribe to the newsletter to receive future information about COSCUP.') },
-      { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 COSCUP 2022 參與者大調查問卷？', 'Would you like to take the COSCUP 2022 attendee survey?') }, inline: true },
+      { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 COSCUP 2023 參與者大調查問卷？', 'Would you like to take the COSCUP 2023 attendee survey?') }, inline: true },
       { type: 'Guard', to: jumpToCOSCUPGuard('is_take') }
     ],
     [
@@ -81,7 +81,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['55-64 歲', '55-64 years old'],
             ['65歲以上', '65 years or older'],
             ['不方便告知', 'Prefer not to say']
-          ])
+          ]),
         }
       },
       {
@@ -157,15 +157,18 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['工程師/開發者, 嵌入式應用程序或設備', 'Developer, Embedded Applications or Devices'],
             ['工程師/開發者, 遊戲或圖像', 'Developer, Game or Graphics'],
             ['工程師/開發者, 品質保證或測試', 'Developer, QA or test'],
+            ['工程師/開發者, 自動化', 'Developer, Automation'],
             ['開發運維工程師', 'DevOps Engineer'],
             ['資料工程師', 'Engineer, Data'],
             ['網站可靠性工程工程師', 'Engineer, Site Reliability'],
+            ['數位電路設計工程師', 'Engineer, Digital Circuit Design'],
             ['工程師經理', 'Engineering Manager'],
             ['系統管理員', 'System Administrator'],
             ['資料庫管理員', 'Database Administrator'],
             ['資料科學家或機器學習人員', 'Data Scientist or Machine Learning specialist'],
             ['資料或商業分析人員', 'Data or Business Analyst'],
             ['設計師', 'Designer'],
+            ['專案管理', 'Project Management'],
             ['產品經理', 'Product Manager'],
             ['行銷相關人員', 'Marketing-related Professional'],
             ['銷售業務人員', 'Business or Sales Professional'],
@@ -174,7 +177,9 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['人力資源管理人員', 'Human Resources Professional'],
             ['總務行政人員', 'Administration Staff'],
             ['學術研究人員', 'Academic Researcher'],
+            ['培訓講師/顧問', 'Training Instructor/Consultant'],
             ['教育人員', 'Educator'],
+            ['技術員', 'Technician'],
             ['學生', 'Student'],
             ['目前未就業', 'Not employed']
           ]),
@@ -289,6 +294,10 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['網路論壇', 'Online Forums'],
             ['網路新聞', 'Online News'],
             ['社群媒體(FB, IG, Twitter, Plurk...)', 'Social Media'],
+            ['公司同事', 'Co-worker'],
+            ['工作需求', 'Job requirements'],
+            ['開源社群', 'Open-source community'],
+            ['活動/講座', 'event/seminar'],
           ]),
           other: { text: t('其他', 'Other') }
         }
@@ -362,6 +371,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Cloud',
             'IoT/Embedded',
             'WebAssembly',
+            'AI (Deep Learning/Machine Learning)',
             'Consoles(Xbox/PlayStation/Nintendo)',
             'I don\'t develop anything'
           ]).map((el) => (
@@ -391,6 +401,8 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Eclipse',
             'JetBrains Family (Intellij, PhpStorm, WebStorm)',
             'Android Studio',
+            'Atom',
+            'Notepad++'
           ]),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
@@ -412,9 +424,13 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Arch Linux',
             'Fedora Linux',
             'Redhat Linux',
+            'Kali Linux',
+            'alpine linux',
+            'WSL2',
             'CentOS (including Stream & Rocky Linux)',
             'openSUSE Linux',
             'macOS',
+            'Chrome OS Flex'
           ]),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
@@ -437,7 +453,8 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Opera',
             'Yandex',
             'Internet Explorer',
-            'UC Browser'
+            'UC Browser',
+            'Arc'
           ]),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
@@ -462,7 +479,8 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Oracle Database',
             'CouchDB',
             'Neo4j',
-            'ClickHouse'
+            'ClickHouse',
+            'don’t use'
           ]),
           maxChosen: 3,
           other: { text: t('其他', 'Other') }
@@ -546,7 +564,6 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             'Libre Office',
             'Open Office',
             'GIMP',
-            'Inkscape',
             'Krita',
             'Blender'
           ]),
@@ -568,7 +585,8 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['我為人人 人人為我', 'One for all, all for one'],
             ['對職業生涯有幫助', 'For professional growth'],
             ['被某些開發者感動', 'Moved by, inspired by some developers'],
-            ['朋友強力推坑', 'It was highly recommend by a friend']
+            ['朋友強力推坑', 'It was highly recommend by a friend'],
+            ['知識為人類共同資產應當共享得以最大化效益', 'Knowledge is a common asset of humanity and should be shared to maximize its benefits'],
           ]),
           other: { text: t('其他', 'Other') }
         }

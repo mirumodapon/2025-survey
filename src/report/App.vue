@@ -47,11 +47,11 @@ onMounted(async () => {
 
 <template>
   <main class="main">
-    <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2022 Developer Survey Report">
+    <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2023 Developer Survey Report">
     <section>
-      <h1>COSCUP 2022 Developer Survey Report</h1>
+      <h1>COSCUP 2023 Developer Survey Report</h1>
       <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
-          href="https://coscup.org/2022-survey/result.json" target="_blank">https://coscup.org/2022-survey/result.json</a></p>
+          href="https://coscup.org/2023-survey/result.json" target="_blank">https://coscup.org/2023-survey/result.json</a></p>
       <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
     </section>
     <div class="list">

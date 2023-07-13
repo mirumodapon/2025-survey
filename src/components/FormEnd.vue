@@ -8,7 +8,7 @@ import BaseText from './BaseText.vue';
 
 const props = defineProps({ token: String, t: { type: Function as PropType<(zh: string, en: string) => string>, required: true } })
 
-const url = computed(() => `https://opass.app/r/COSCUP_2022/${props.token}`)
+const url = computed(() => `https://opass.app/r/COSCUP_2023/${props.token}`)
 
 const copyMessage = ref('')
 const copy = async () => {
@@ -26,7 +26,7 @@ const forget = () => {
 
 <template>
   <section class="base">
-    <p class="description">{{ t('感謝你的回答，我們將會在 COSCUP 當天公佈統計結果，盡請期待。\n您可以透過以下網址安裝並登入 OPass，透過 App 參與大地遊戲及接收議程及公告等年會第一手資訊。', 'Thank you for completing our survey! We will announce the result on the day of COSCUP. Please stay tuned!\nHere is the link to install the OPass app on your phone. You can join booth reward activity and get all the information (sessions & events) about COSCUP 2022 through the OPass app.') }}</p>
+    <p class="description">{{ t('感謝你的回答，我們將會在 COSCUP 當天公佈統計結果，盡請期待。\n您可以透過以下網址安裝並登入 OPass，透過 App 參與大地遊戲及接收議程及公告等年會第一手資訊。', 'Thank you for completing our survey! We will announce the result on the day of COSCUP. Please stay tuned!\nHere is the link to install the OPass app on your phone. You can join booth reward activity and get all the information (sessions & events) about COSCUP 2023 through the OPass app.') }}</p>
     <div class="opass">
       <img :src="`https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=${url}&choe=UTF-8`" />
       <a class="button" :href="url"><BaseButton color="#94E73A">{{ t('打開 OPass APP', 'Open OPass APP') }}</BaseButton></a>

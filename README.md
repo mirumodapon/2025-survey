@@ -1,6 +1,6 @@
-# COSCUP x KCD Taiwan 2022 Survey
+# COSCUP 2023 Survey
 
-https://coscup.org/2022-survey
+https://coscup.org/2023-survey
 
 ## Process
 User -> Frontend (Github Page) -> Google app script (Backend) -> COSCUP newsletter system -> OPass -> Frontend (Github Page) -> User
