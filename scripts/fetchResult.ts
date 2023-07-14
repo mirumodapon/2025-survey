@@ -7,7 +7,7 @@ import { writeFile } from 'fs/promises'
 import palette from 'google-palette'
 
 config({ path: join(__dirname, '../.env.local') })
-const SPREADSHEET_ID = '1AYf_qzrxlp7K2SdsgUfjpqIY7qiPOG710zsMpyhpCCo'
+const SPREADSHEET_ID = process.env.RESULT_SPREADSHEET_ID;
 
 async function getSource() {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)

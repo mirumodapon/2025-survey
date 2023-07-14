@@ -18,6 +18,7 @@ jobs:
       VITE_BACKEND_URL: ${{secrets.VITE_BACKEND_URL}}
       GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL}}
       GOOGLE_PRIVATE_KEY: ${{secrets.GOOGLE_PRIVATE_KEY}}
+      RESULT_SPREADSHEET_ID: ${{secrets.RESULT_SPREADSHEET_ID}}
 
     strategy:
       matrix:
