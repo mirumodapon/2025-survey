@@ -61,7 +61,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       { type: 'Explain', text: t('Email 將只在使用者同意訂閱電子報時，提供給電子報系統使用，與問卷內容無關。', 'The email will only be provided to the newsletter system when the user agrees to subscribe to the newsletter and is not related to the content of the survey.') },
       { type: 'Field', key: 'is_subscribe_newsletter', question: '', config: { type: 'agree', question: t('是否願意訂閱電子報？', 'Would you like to subscribe to the COSCUP newsletter?') }, inline: true },
       { type: 'Explain', text: t('訂閱電子報將收到 COSCUP 未來的相關訊息。', 'Subscribe to the newsletter to receive future information about COSCUP.') },
-      { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 COSCUP 2023 參與者大調查問卷？', 'Would you like to take the COSCUP 2023 attendee survey?') }, inline: true },
+      { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 COSCUP 2024 參與者大調查問卷？', 'Would you like to take the COSCUP 2024 attendee survey?') }, inline: true },
       { type: 'Guard', to: jumpToCOSCUPGuard('is_take') }
     ],
     [
