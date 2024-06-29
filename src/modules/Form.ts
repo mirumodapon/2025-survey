@@ -118,6 +118,33 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
           ]),
           other: { text: t('其他', 'Other') }
         }
+      },
+      {
+        type: 'Field',
+        key: 'current_primary_residence',
+        required: true,
+        question: t('你目前的主要居住地？', 'What\'s your current primary residence?'),
+        config: {
+          type: 'single-option',
+          options:  makeOptions([
+            ['亞洲', 'Asia'],
+            ['歐洲', 'Europe'],
+            ['北美洲', 'North America'],
+            ['中南美洲', 'Central and South America'],
+            ['大洋洲', 'Oceania'],
+            ['非洲', 'Africa'],
+          ]),
+        }
+      },
+      { 
+        type: 'Field', 
+        key: 'nationality', 
+        required: true, 
+        question: t('你的國籍？', 'What\'s your nationality?'), 
+        config: { 
+          type: 'text'
+        }, 
+        // inline: true 
       }
     ],
     [
@@ -201,7 +228,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['15 - 19 年', '15 to 19 years'],
             ['20 - 24 年', '20 to 24 years'],
             ['25 to 29 年', '25 to 29 years'],
-            ['>  30 年', 'More than 50 years']
+            ['>  30 年', 'More than 30 years']
           ])
         }
       },
