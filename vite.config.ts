@@ -16,6 +16,7 @@ export default defineConfig({
     }
   },
   build: {
+    chunkSizeWarningLimit: 1600,
     target: ['chrome58', 'ios11', 'es2015'],
     rollupOptions: {
       input: {
