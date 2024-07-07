@@ -88,7 +88,7 @@ const submit = async () => {
 
 <template>
   <main class="main">
-    <img class="banner" src="@/assets/banner.jpg" alt="COSCUP 2024 Developer Survey">
+    <img class="banner" src="@/assets/Attendee_survey2024.png" alt="COSCUP 2024 Developer Survey">
     <div
       v-if="!token && !loading"
       class="block"

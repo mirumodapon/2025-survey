@@ -47,7 +47,7 @@ onMounted(async () => {
 
 <template>
   <main class="main">
-    <img class="banner" src="../assets/banner.jpg" alt="COSCUP 2024 Developer Survey Report">
+    <img class="banner" src="../assets/Attendee_survey2024.png" alt="COSCUP 2024 Developer Survey Report">
     <section>
       <h1>COSCUP 2024 Developer Survey Report</h1>
       <p>{{ t('本資料每 5-10 分鐘更新一次，原始統計資料：', 'This data will update by 5-10 mins. Original stat data:') }}<a
