@@ -142,9 +142,24 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         required: true, 
         question: t('你的國籍？', 'What\'s your nationality?'), 
         config: { 
-          type: 'text'
-        }, 
-        // inline: true 
+          type: 'single-option',
+          options:  makeOptions([
+            ['台灣', 'Taiwan'],
+            ['香港', 'Hong Kong'],
+            ['中國大陸', 'China'],
+            ['英國', 'UK'],
+            ['美國', 'U.S.A.'],
+            ['加拿大', 'Canada'],
+            ['日本', 'Japan'],
+            ['韓國', 'Korea'],
+            ['澳洲', 'Australia'],
+            ['菲律賓', 'Philippines'],
+            ['新加坡', 'Singapore'],
+            ['法國', 'France'],
+            ['德國', 'Germany']
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
       }
     ],
     [
@@ -325,6 +340,70 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['工作需求', 'Job requirements'],
             ['開源社群', 'Open-source community'],
             ['活動/講座', 'event/seminar'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'encounter_COSCUP',
+        required: true,
+        question: t('你在哪邊遇到了 COSCUP？', 'Where did you encounter COSCUP?'),
+        config: {
+          type: 'multi-option',
+          options: makeOptions([
+            ['參與 FOSDEM', 'Participate in FOSDEM'],
+            ['參與 SCaLE', 'Participate in SCaLE'],
+            ['參與 FOSSAISA', 'Participate in FOSSAISA'],
+            ['參與 [OSPN.jp](https://ospn.jp/) 系列活動', 'Participate in OSPN.jp series events'],
+            ['參與 中国开源年会', 'Participate in the China Open Source Annual Conference'],
+            ['參與 香港開源年會', 'Participate in the Hong Kong Open Source Conference'],
+            ['參與 HITCON', 'Participate in HITCON'],
+            ['參與 g0v Summit', 'Participate in g0v Summit'],
+            ['參與 SITCON 系列活動', 'Participate in SITCON series events'],
+            ['參與 PyCON 系列活動', 'Participate in PyCon series events'],
+            ['參與 MOPCON', 'Participate in MOPCON'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'reasons_to_come_to_COSCUP',
+        required: true,
+        question: t('你是看到、聽到或接觸了什麼而來 COSCUP 的呢？', 'What did you see, hear, or come into contact with that led you to COSCUP?'),
+        config: {
+          type: 'multi-option',
+          options: makeOptions([
+            ['我是老朋友！', 'I\'m an old friend!'],
+            ['攤位介紹', 'Booth introduction'],
+            ['演講宣傳', 'Presentation promotion'],
+            ['看到傳單', 'Saw flyers'],
+            ['電子報：OCF 每月電子報', 'E-newsletter: OCF monthly newsletter'],
+            ['電子報：COSCUP', 'E-newsletter: COSCUP'],
+            ['COSCUP 的 GitHub 專案', 'COSCUP\'s GitHub projects'],
+            ['親友介紹', 'Introduced by friends or family'],
+          ]),
+          other: { text: t('其他', 'Other') }
+        }
+      },
+      {
+        type: 'Field',
+        key: 'platforms_to_receive_updates',
+        required: true,
+        question: t('你有在使用哪些平臺持續接收開源新知呢？', 'What platforms are you using to continuously receive open-source updates?'),
+        config: {
+          type: 'multi-option',
+          options: makeOptions([
+            ['Faecbook', 'Faecbook'],
+            ['X (過去的 Twitter)', 'X (formerly Twitter)'],
+            ['LinkedIn', 'LinkedIn'],
+            ['Mastodon', 'Mastodon'],
+            ['Plurk', 'Plurk'],
+            ['RSS Reader', 'RSS Reader'],
+            ['關注社群討論 Mailing List', 'Follow community discussion mailing lists'],
+            ['訂閱 原廠的電子報', 'Subscribe to the manufacturer\'s newsletter'],
+            ['訂閱 GitHub/GitLab 等代管平臺的資訊', 'Subscribing to information from hosting platforms like GitHub/GitLab'],
           ]),
           other: { text: t('其他', 'Other') }
         }
@@ -664,6 +743,22 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
         type: 'Field',
         key: 'what_from_booth_in_coscup',
         question: t('你希望在攤位獲得的資訊？', 'What do you want to learn the most from the booth?'),
+        config: {
+          type: 'multi-text'
+        }
+      },
+      {
+        type: 'Field',
+        key: 'where_is_codepecker',
+        question: t('你的小啄現在待在哪邊?', 'Where is your codepecker now?'),
+        config: {
+          type: 'multi-text'
+        }
+      },
+      {
+        type: 'Field',
+        key: 'technology_follow',
+        question: t('你平常有接觸哪些科技、技術或開源的新聞來源呢？', 'What technology, technique, or open-source news sources do you usually follow?'),
         config: {
           type: 'multi-text'
         }

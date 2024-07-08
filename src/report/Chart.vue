@@ -48,12 +48,13 @@ export default {
     chartData () {
       const { labels, datas } = this.config.data;
 
-      return datas
-        .map((x, i) => ({
-          y: x,
-          x: labels[i]
-        }))
-        .filter((d) => d.y > 2)
+      var poll = []
+      datas.map((x, i) => {
+        if (labels[i] !== '無資料') {
+          poll.push({y: x, x: labels[i]})
+        }
+      })
+      return poll.filter((d) => d.y >= 1)
     },
     series() {
       if (this.config) {
