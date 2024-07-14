@@ -134,6 +134,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['大洋洲', 'Oceania'],
             ['非洲', 'Africa'],
           ]),
+          other: { text: t('其他', 'Other') }
         }
       },
       { 
@@ -355,7 +356,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
             ['參與 FOSDEM', 'Participate in FOSDEM'],
             ['參與 SCaLE', 'Participate in SCaLE'],
             ['參與 FOSSAISA', 'Participate in FOSSAISA'],
-            ['參與 [OSPN.jp](https://ospn.jp/) 系列活動', 'Participate in OSPN.jp series events'],
+            ['參與 OSPN.jp 系列活動', 'Participate in OSPN.jp series events'],
             ['參與 中国开源年会', 'Participate in the China Open Source Annual Conference'],
             ['參與 香港開源年會', 'Participate in the Hong Kong Open Source Conference'],
             ['參與 HITCON', 'Participate in HITCON'],
