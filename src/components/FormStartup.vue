@@ -25,7 +25,7 @@ const lang = computed({
     <ul class="description">
       <template v-if="lang === 'zh'">
         <li>送出表單即可取得 OPass 票券，透過出示 QR Code 參與大地遊戲，即可獲得點數到大會攤位兌換精美紀念品喔！</li>
-        <li>每年 Stack Overflow 都會發表 <a href="https://insights.stackoverflow.com/survey/2021">Developer Survey</a>，讓大家了解 Stack Overflow 社群參與者的組成。身為亞洲最大開源年會，我們也要來大調查，讓大家可以一窺 COSCUP 的與會者樣貌！</li>
+        <li>每年 Stack Overflow 都會發表 <a href="https://survey.stackoverflow.co/2023/">Developer Survey</a>，讓大家了解 Stack Overflow 社群參與者的組成。身為亞洲最大開源年會，我們也要來大調查，讓大家可以一窺 COSCUP 的與會者樣貌！</li>
         <li>本次調查目的為了解 COSCUP 受眾的群體狀況，不會蒐集任何足以辨識個人的資料，請放心填寫。統計結果預計於年會進行中公開，並持續開放填寫，在年會結束後完成最後統計並公開。</li>
       </template>
       <template v-else>
