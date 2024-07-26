@@ -62,6 +62,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       { type: 'Field', key: 'is_subscribe_newsletter', question: '', config: { type: 'agree', question: t('是否願意訂閱電子報？', 'Would you like to subscribe to the COSCUP newsletter?') }, inline: true },
       { type: 'Explain', text: t('訂閱電子報將收到 COSCUP 未來的相關訊息。', 'Subscribe to the newsletter to receive future information about COSCUP.') },
       { type: 'Field', key: 'is_take', question: '', config: { type: 'agree', question: t('是否願意填寫 COSCUP 2024 參與者大調查問卷？', 'Would you like to take the COSCUP 2024 attendee survey?') }, inline: true },
+      { type: 'Explain', text: t('歡迎每個會眾、社群夥伴、贊助夥伴還有「你」，一同動動手指，為拼湊出台灣社群的樣貌盡一份力！', 'Welcome every attendee, community partner, sponsor, and “you” to join us in piecing together the image of Taiwan’s community by moving your fingers and contributing!') },
       { type: 'Guard', to: jumpToCOSCUPGuard('is_take') }
     ],
     [
