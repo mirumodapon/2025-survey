@@ -756,7 +756,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
           type: 'multi-text'
         }
       },
-      { type: 'Field', key: 'is_allow_coc', question: '', required: true, config: { type: 'agree', question: t('我了解並願意遵守 CoC 規範', 'I understand and am willing to abide by the CoC regulations') }, inline: true },
+      { type: 'Field', key: 'is_allow_coc', question: '', required: true, config: { type: 'agree', question: t('我已閱讀與瞭解 COSCUP 的 CoC', 'I have read and understood COSCUP’s Code of Conduct (CoC).') }, inline: true },
       { type: 'Coc' },
       { type: 'Captcha' },
       { type: 'Guard', to: requiredAgree(t) },
