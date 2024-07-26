@@ -750,14 +750,6 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       },
       {
         type: 'Field',
-        key: 'where_is_codepecker',
-        question: t('你的小啄現在待在哪邊?', 'Where is your codepecker now?'),
-        config: {
-          type: 'multi-text'
-        }
-      },
-      {
-        type: 'Field',
         key: 'technology_follow',
         question: t('你平常有接觸哪些科技、技術或開源的新聞來源呢？', 'What technology, technique, or open-source news sources do you usually follow?'),
         config: {
