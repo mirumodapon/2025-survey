@@ -751,7 +751,7 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
       {
         type: 'Field',
         key: 'where_is_codepecker',
-        question: t('你的小啄現在待在哪邊?', 'Where is your codepecker now?'),
+        question: t('你的小啄現在待在哪裡？你在 COSCUP 買的各種紀念品或者拿的小物有放在哪那邊或者使用嗎？', 'Where is your codepecker now? Have you placed or used the various souvenirs or small items you bought or received at COSCUP anywhere?'),
         config: {
           type: 'multi-text'
         }
