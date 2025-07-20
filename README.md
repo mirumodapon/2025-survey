@@ -1,6 +1,6 @@
-# COSCUP 2024 Survey
+# COSCUP 2025 Survey
 
-https://coscup.org/2024-survey
+https://coscup.org/2025-survey
 
 ## Process
 User -> Frontend (Github Page) -> Google app script (Backend) -> COSCUP newsletter system -> OPass -> Frontend (Github Page) -> User

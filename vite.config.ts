@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/2024-survey/',
+  base: '/2025-survey/',
   plugins: [
     vue({
       include: [/\.vue$/]

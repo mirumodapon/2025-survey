@@ -16,10 +16,10 @@ const lang = computed({
   <section class="base2">
     <h1>
       <template v-if="lang === 'zh'">
-        COSCUP 2024 參與者大調查
+        COSCUP 2025 參與者大調查
       </template>
       <template v-else>
-        COSCUP 2024 Attendee Survey
+        COSCUP 2025 Attendee Survey
       </template>
     </h1>
     <ul class="description">
@@ -35,9 +35,9 @@ const lang = computed({
       </template>
     </ul>
     <BaseSwitch v-model="lang" :options="[{ text: '中', value: 'zh' }, { text: 'En', value: 'en' }]" />
-    <a href="https://coscup.org/2024-survey/report" target="_blank"><BaseButton style="margin-top: 10px" color="#25C2A5">{{ lang === 'zh' ? '查看調查結果' : 'View survey report' }}</BaseButton></a>
+    <a href="https://coscup.org/2025-survey/report" target="_blank"><BaseButton style="margin-top: 10px" color="#25C2A5">{{ lang === 'zh' ? '查看調查結果' : 'View survey report' }}</BaseButton></a>
     <div class="branding">
-      Source code: <a href="https://github.com/COSCUP/2024-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
+      Source code: <a href="https://github.com/COSCUP/2025-survey" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" /></a>
     </div>
   </section>
 </template>
