@@ -717,6 +717,15 @@ export const makeFormConfig: (t: (zh: string, en: string) => string, data: DataT
     [
       {
         type: 'Field',
+        key: 'where_know_coscup',
+        required: true,
+        question: t('你從那邊認識COSCUP？', 'How did you come to know about COSCUP?'),
+        config: {
+          type: 'multi-text',
+        }
+      },
+      {
+        type: 'Field',
         key: 'what_hope_coscup',
         required: true,
         question: t('你希望能在 COSCUP 大會中有什麼收穫？', 'What do you hope to get out of COSCUP? Please select all that apply.'),
