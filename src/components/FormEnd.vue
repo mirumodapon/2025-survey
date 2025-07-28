@@ -36,7 +36,7 @@ const imageSettings = ref({
     <p class="description">{{ t('填 Attendee Survey, 抽 IntelliJ IDEA 一年期軟體授權! 由此去', 'Fill out the Attendee Survey for a chance to win a one-year software license for IntelliJ IDEA! Click here to participate.') }} <a href="#">IntelliJ 抽獎 敬請期待</a></p>
     <div class="opass">
       <QrcodeVue
-        style="padding: 25px; background: #fff;"
+        style="width:200px; height: 200px; padding: 25px; background: #fff;"
         :value="url"
         :image-settings="imageSettings"
       />
