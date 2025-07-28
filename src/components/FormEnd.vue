@@ -23,6 +23,11 @@ const forget = () => {
   window.location.reload()
 }
 
+const imageSettings = ref({
+  width: 500,
+  height: 500
+})
+
 </script>
 
 <template>
@@ -32,11 +37,8 @@ const forget = () => {
     <div class="opass">
       <QrcodeVue
         style="padding: 25px; background: #fff;"
-        :image-settings="{
-          src: url,
-          width: 500,
-          height: 500
-        }"
+        :value="url"
+        :image-settings="imageSettings"
       />
       <a class="button" :href="url"><BaseButton color="#94E73A">{{ t('打開 OPass APP', 'Open OPass APP') }}</BaseButton></a>
       <BaseText readonly :model-value="url" @click="copy" />
