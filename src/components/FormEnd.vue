@@ -8,7 +8,7 @@ import BaseText from './BaseText.vue';
 
 const props = defineProps({ token: String, t: { type: Function as PropType<(zh: string, en: string) => string>, required: true } })
 
-const url = computed(() => `https://opass.app/r/COSCUP_2025/${props.token}`)
+const url = computed(() => `https://opass.app/open/?event_id=COSCUP_2025&token=${props.token}`)
 
 const copyMessage = ref('')
 const copy = async () => {
