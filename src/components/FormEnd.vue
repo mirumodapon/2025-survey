@@ -33,7 +33,7 @@ const imageSettings = ref({
 <template>
   <section class="base">
     <p class="description">{{ t('感謝你的回答，我們將會在 COSCUP 當天公佈統計結果，盡請期待。\n您可以透過以下網址安裝並登入 OPass，透過 App 參與大地遊戲及接收議程及公告等年會第一手資訊。', 'Thank you for completing our survey! We will announce the result on the day of COSCUP. Please stay tuned!\nHere is the link to install the OPass app on your phone. You can join booth reward activity and get all the information (sessions & events) about COSCUP 2025 through the OPass app.') }}</p>
-    <p class="description">{{ t('填 Attendee Survey, 抽 IntelliJ IDEA 一年期軟體授權! 由此去', 'Fill out the Attendee Survey for a chance to win a one-year software license for IntelliJ IDEA! Click here to participate.') }} <a href="#">IntelliJ 抽獎 敬請期待</a></p>
+    <p class="description">{{ t('填 Attendee Survey, 抽 IntelliJ IDEA 一年期軟體授權! 由此去', 'Fill out the Attendee Survey for a chance to win a one-year software license for IntelliJ IDEA! Click here to participate.') }} <a href="https://s.coscup.org/p83uwubq">IntelliJ 抽獎表單</a></p>
     <div class="opass">
       <QrcodeVue
         style="width:200px; height: 200px; padding: 25px; background: #fff;"
